@@ -2,366 +2,312 @@
          xmlns="http://maven.apache.org/POM/4.0.0"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
 
-    <modelVersion>4.0.0</modelVersion>
+<modelVersion>4.0.0</modelVersion>
 
-    <groupId>io.github.eggy03</groupId>
-    <artifactId>nautilus-linux</artifactId>
-    <version>1.0.0</version>
+<groupId>io.github.eggy03</groupId>
+<artifactId>nautilus-linux</artifactId>
+<version>0.1.0</version>
 
-    <name>Nautilus</name>
-    <description>A Swing based GUI for viewing system information</description>
+<name>Nautilus</name>
+<description>A Swing based GUI for viewing system information</description>
 
-    <properties>
-        <!-- build -->
-        <maven.compiler.release>21</maven.compiler.release>
-        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+<properties>
+    <!-- build -->
+    <maven.compiler.release>21</maven.compiler.release>
+    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 
-        <!-- Dependency versions -->
-        <dmidecode4j.version>0.3.0</dmidecode4j.version>
-        <swing.theme.manager>0.1.0</swing.theme.manager>
-        <slf4j.version>2.0.17</slf4j.version>
-        <tinylog.version>2.7.0</tinylog.version>
-        <flatlaf.version>3.7.1</flatlaf.version>
-        <jsvg.version>2.0.0</jsvg.version>
-        <lombok.version>1.18.44</lombok.version>
-        <commons.lang3.version>3.20.0</commons.lang3.version>
-        <commons.io.version>2.21.0</commons.io.version>
-        <miglayout.version>11.4.3</miglayout.version>
+    <!-- Dependency versions -->
+    <dmidecode4j.version>0.3.0</dmidecode4j.version>
+    <slf4j.version>2.0.17</slf4j.version>
+    <tinylog.version>2.7.0</tinylog.version>
+    <flatlaf.version>3.7.1</flatlaf.version>
+    <jsvg.version>2.1.0</jsvg.version>
+    <lombok.version>1.18.44</lombok.version>
+    <commons.lang3.version>3.20.0</commons.lang3.version>
+    <commons.io.version>2.21.0</commons.io.version>
+    <miglayout.version>11.4.3</miglayout.version>
 
-        <!-- Plugin versions -->
-        <maven.compiler.plugin.version>3.15.0</maven.compiler.plugin.version>
-        <maven.clean.plugin.version>3.5.0</maven.clean.plugin.version>
-        <maven.resources.plugin.version>3.5.0</maven.resources.plugin.version>
-        <jpackage.mave.plugin.version>1.7.4</jpackage.mave.plugin.version>
-        <jlink.maven.plugin.version>1.2.1</jlink.maven.plugin.version>
-        <native-maven-plugin.version>1.1.0</native-maven-plugin.version>
-        <exec.maven.plugin.version>3.6.3</exec.maven.plugin.version>
+    <!-- Plugin versions -->
+    <maven.compiler.plugin.version>3.15.0</maven.compiler.plugin.version>
+    <maven.clean.plugin.version>3.5.0</maven.clean.plugin.version>
+    <maven.resources.plugin.version>3.5.0</maven.resources.plugin.version>
+    <jpackage.maven.plugin.version>1.7.4</jpackage.maven.plugin.version>
+    <jlink.maven.plugin.version>1.2.1</jlink.maven.plugin.version>
+    <native-maven-plugin.version>1.1.0</native-maven-plugin.version>
+    <exec.maven.plugin.version>3.6.3</exec.maven.plugin.version>
 
-        <!-- Extras -->
-        <app.main.class>io.github.eggy03.ui.Start</app.main.class>
-        <app.fatjar.name>${project.build.finalName}-jar-with-dependencies.jar</app.fatjar.name>
-        <app.fatjar.directory>${project.build.directory}/fatjar</app.fatjar.directory>
+    <!-- Extras -->
+    <app.main.class>io.github.eggy03.nautilus.windows.Start</app.main.class>
+    <app.fatjar.name>${project.build.finalName}-jar-with-dependencies.jar</app.fatjar.name>
+    <app.fatjar.directory>${project.build.directory}/fatjar</app.fatjar.directory>
 
-        <jlink.output.directory>${project.build.directory}/runtime</jlink.output.directory>
-        <jpackage.output.directory>${project.build.directory}/output</jpackage.output.directory>
+    <jlink.output.directory>${project.build.directory}/runtime</jlink.output.directory>
+    <jpackage.output.directory>${project.build.directory}/output</jpackage.output.directory>
 
-        <project.windows.icon>${project.basedir}/icons/nautilus.ico</project.windows.icon>
-        <project.linux.icon>${project.basedir}/icons/nautilus.png</project.linux.icon>
-    </properties>
+    <project.windows.icon>${project.basedir}/icons/nautilus.ico</project.windows.icon>
+    <project.linux.icon>${project.basedir}/icons/nautilus.png</project.linux.icon>
+</properties>
 
-    <dependencies>
+<dependencies>
+    <!-- :) -->
+    <dependency>
+        <groupId>io.github.eggy03</groupId>
+        <artifactId>dmidecode4j</artifactId>
+        <version>${dmidecode4j.version}</version>
+    </dependency>
 
-        <dependency>
-            <groupId>io.github.eggy03</groupId>
-            <artifactId>dmidecode4j</artifactId>
-            <version>${dmidecode4j.version}</version>
-        </dependency>
+    <!-- UI -->
+    <dependency>
+        <groupId>com.formdev</groupId>
+        <artifactId>flatlaf</artifactId>
+        <version>${flatlaf.version}</version>
+    </dependency>
 
-        <dependency>
-            <groupId>io.github.eggy03</groupId>
-            <artifactId>swing-theme-manager</artifactId>
-            <version>${swing.theme.manager}</version>
-        </dependency>
+    <dependency>
+        <groupId>com.formdev</groupId>
+        <artifactId>flatlaf-extras</artifactId>
+        <version>${flatlaf.version}</version>
+    </dependency>
 
-        <dependency>
-            <groupId>org.slf4j</groupId>
-            <artifactId>slf4j-api</artifactId>
-            <version>${slf4j.version}</version>
-        </dependency>
+    <dependency>
+        <groupId>com.miglayout</groupId>
+        <artifactId>miglayout-swing</artifactId>
+        <version>${miglayout.version}</version>
+    </dependency>
 
-        <dependency>
-            <groupId>org.tinylog</groupId>
-            <artifactId>slf4j-tinylog</artifactId>
-            <version>${tinylog.version}</version>
-        </dependency>
+    <dependency>
+        <groupId>com.github.weisj</groupId>
+        <artifactId>jsvg</artifactId>
+        <version>${jsvg.version}</version>
+        <scope>runtime</scope>
+    </dependency>
 
-        <dependency>
-            <groupId>org.tinylog</groupId>
-            <artifactId>tinylog-impl</artifactId>
-            <version>${tinylog.version}</version>
-        </dependency>
+    <dependency>
+        <groupId>io.github.eggy03</groupId>
+        <artifactId>swing-theme-manager</artifactId>
+        <version>0.1.0</version>
+    </dependency>
 
-        <dependency>
-            <groupId>com.formdev</groupId>
-            <artifactId>flatlaf</artifactId>
-            <version>${flatlaf.version}</version>
-        </dependency>
+    <!-- Logging -->
+    <dependency>
+        <groupId>org.slf4j</groupId>
+        <artifactId>slf4j-api</artifactId>
+        <version>${slf4j.version}</version>
+    </dependency>
 
-        <dependency>
-            <groupId>com.formdev</groupId>
-            <artifactId>flatlaf-extras</artifactId>
-            <version>${flatlaf.version}</version>
-        </dependency>
+    <dependency>
+        <groupId>org.tinylog</groupId>
+        <artifactId>slf4j-tinylog</artifactId>
+        <version>${tinylog.version}</version>
+    </dependency>
 
-        <dependency>
-            <groupId>com.github.weisj</groupId>
-            <artifactId>jsvg</artifactId>
-            <version>${jsvg.version}</version>
-            <scope>runtime</scope>
-        </dependency>
+    <dependency>
+        <groupId>org.tinylog</groupId>
+        <artifactId>tinylog-impl</artifactId>
+        <version>${tinylog.version}</version>
+    </dependency>
 
-        <dependency>
-            <groupId>org.projectlombok</groupId>
-            <artifactId>lombok</artifactId>
-            <version>${lombok.version}</version>
-            <scope>provided</scope>
-        </dependency>
+    <!-- Utility -->
+    <dependency>
+        <groupId>org.apache.commons</groupId>
+        <artifactId>commons-lang3</artifactId>
+        <version>${commons.lang3.version}</version>
+    </dependency>
 
-        <dependency>
-            <groupId>org.apache.commons</groupId>
-            <artifactId>commons-lang3</artifactId>
-            <version>${commons.lang3.version}</version>
-        </dependency>
+    <dependency>
+        <groupId>commons-io</groupId>
+        <artifactId>commons-io</artifactId>
+        <version>${commons.io.version}</version>
+    </dependency>
 
-        <dependency>
-            <groupId>commons-io</groupId>
-            <artifactId>commons-io</artifactId>
-            <version>${commons.io.version}</version>
-        </dependency>
-        
-        <dependency>
-    		<groupId>com.miglayout</groupId>
-    		<artifactId>miglayout-swing</artifactId>
-    		<version>${miglayout.version}</version>
-		</dependency>
+    <!-- Annotation -->
+    <dependency>
+        <groupId>org.projectlombok</groupId>
+        <artifactId>lombok</artifactId>
+        <version>${lombok.version}</version>
+        <scope>provided</scope>
+    </dependency>
 
-    </dependencies>
+</dependencies>
 
-    <build>
-        <finalName>${project.artifactId}</finalName>
+<build>
+    <finalName>${project.artifactId}</finalName>
 
-        <plugins>
+    <plugins>
 
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-clean-plugin</artifactId>
-                <version>${maven.clean.plugin.version}</version>
-            </plugin>
+        <plugin>
+            <groupId>org.apache.maven.plugins</groupId>
+            <artifactId>maven-clean-plugin</artifactId>
+            <version>${maven.clean.plugin.version}</version>
+        </plugin>
 
-            <plugin>
-                <artifactId>maven-assembly-plugin</artifactId>
-                <configuration>
-                    <descriptorRefs>
-                        <descriptorRef>jar-with-dependencies</descriptorRef>
-                    </descriptorRefs>
-                    <archive>
-                        <manifest>
-                            <mainClass>${app.main.class}</mainClass>
-                        </manifest>
-                    </archive>
-                </configuration>
-                <executions>
-                    <execution>
-                        <phase>package</phase>
-                        <goals>
-                            <goal>single</goal>
-                        </goals>
-                    </execution>
-                </executions>
-            </plugin>
+        <plugin>
+            <artifactId>maven-assembly-plugin</artifactId>
+            <configuration>
+                <descriptorRefs>
+                    <descriptorRef>jar-with-dependencies</descriptorRef>
+                </descriptorRefs>
+                <archive>
+                    <manifest>
+                        <mainClass>${app.main.class}</mainClass>
+                    </manifest>
+                </archive>
+            </configuration>
+            <executions>
+                <execution>
+                    <phase>package</phase>
+                    <goals>
+                        <goal>single</goal>
+                    </goals>
+                </execution>
+            </executions>
+        </plugin>
 
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-compiler-plugin</artifactId>
-                <version>${maven.compiler.plugin.version}</version>
-                <configuration>
-                    <annotationProcessorPaths>
-                        <path>
-                            <groupId>org.projectlombok</groupId>
-                            <artifactId>lombok</artifactId>
-                            <version>${lombok.version}</version>
-                        </path>
-                    </annotationProcessorPaths>
-                </configuration>
-            </plugin>
+        <plugin>
+            <groupId>org.apache.maven.plugins</groupId>
+            <artifactId>maven-compiler-plugin</artifactId>
+            <version>${maven.compiler.plugin.version}</version>
+            <configuration>
+                <annotationProcessorPaths>
+                    <path>
+                        <groupId>org.projectlombok</groupId>
+                        <artifactId>lombok</artifactId>
+                        <version>${lombok.version}</version>
+                    </path>
+                </annotationProcessorPaths>
+            </configuration>
+        </plugin>
 
-        </plugins>
-    </build>
+    </plugins>
+</build>
 
-    <profiles>
-        <!-- Native Builds -->
-        <profile>
-            <id>native</id>
-            <build>
-                <plugins>
+<profiles>
 
-                    <plugin>
-                        <groupId>org.graalvm.buildtools</groupId>
-                        <artifactId>native-maven-plugin</artifactId>
-                        <version>${native-maven-plugin.version}</version>
-                        <executions>
-                            <execution>
-                                <id>build-native</id>
-                                <goals>
-                                    <goal>compile</goal>
-                                </goals>
-                            </execution>
-                        </executions>
-                        <configuration>
-                            <mainClass>${app.main.class}</mainClass>
-                            <agent>
-                                <enabled>false</enabled>
-                            </agent>
-                            <buildArgs>
-                                --add-modules=java.desktop
-                                --initialize-at-run-time=java.awt.Toolkit,java.awt.GraphicsEnvironment
-                            </buildArgs>
-                        </configuration>
-                    </plugin>
+    <!--JVM Builds With Jpackage-->
+    <profile>
+        <id>dist</id>
+        <build>
+            <plugins>
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-resources-plugin</artifactId>
+                    <version>${maven.resources.plugin.version}</version>
+                    <executions>
+                        <execution>
+                            <id>prepare-jpackage-input</id>
+                            <phase>package</phase>
+                            <goals>
+                                <goal>copy-resources</goal>
+                            </goals>
+                            <configuration>
+                                <outputDirectory>${app.fatjar.directory}</outputDirectory>
+                                <resources>
+                                    <resource>
+                                        <directory>${project.build.directory}</directory>
+                                        <includes>
+                                            <include>${app.fatjar.name}</include>
+                                        </includes>
+                                    </resource>
+                                </resources>
+                            </configuration>
+                        </execution>
+                    </executions>
+                </plugin>
+                <plugin>
+                    <groupId>org.panteleyev</groupId>
+                    <artifactId>jlink-maven-plugin</artifactId>
+                    <version>${jlink.maven.plugin.version}</version>
 
-                    <plugin>
-                        <groupId>org.codehaus.mojo</groupId>
-                        <artifactId>exec-maven-plugin</artifactId>
-                        <version>${exec.maven.plugin.version}</version>
-                        <executions>
-                            <execution>
-                                <id>java-agent</id>
-                                <goals>
-                                    <goal>exec</goal>
-                                </goals>
-                                <configuration>
-                                    <executable>java</executable>
-                                    <workingDirectory>${project.build.directory}</workingDirectory>
-                                    <arguments>
-                                        <argument>-agentlib:native-image-agent=config-output-dir=${project.basedir}/src/main/resources/META-INF/native-image/io/github/eggy03/nautilus</argument>
-                                        <argument>-classpath</argument>
-                                        <classpath/>
-                                        <argument>${app.main.class}</argument>
-                                    </arguments>
-                                </configuration>
-                            </execution>
-                        </executions>
-                    </plugin>
+                    <executions>
+                        <execution>
+                            <id>jlink-runtime</id>
+                            <phase>package</phase>
+                            <goals>
+                                <goal>jlink</goal>
+                            </goals>
+                        </execution>
+                    </executions>
 
-                </plugins>
-            </build>
-        </profile>
+                    <configuration>
+                        <output>${jlink.output.directory}</output>
 
-        <!--JVM Builds With Jpackage-->
-        <profile>
-            <id>dist</id>
-            <build>
-                <plugins>
-                    <plugin>
-                        <groupId>org.apache.maven.plugins</groupId>
-                        <artifactId>maven-resources-plugin</artifactId>
-                        <version>${maven.resources.plugin.version}</version>
-                        <executions>
-                            <execution>
-                                <id>prepare-jpackage-input</id>
-                                <phase>package</phase>
-                                <goals>
-                                    <goal>copy-resources</goal>
-                                </goals>
-                                <configuration>
-                                    <outputDirectory>${app.fatjar.directory}</outputDirectory>
-                                    <resources>
-                                        <resource>
-                                            <directory>${project.build.directory}</directory>
-                                            <includes>
-                                                <include>${app.fatjar.name}</include>
-                                            </includes>
-                                        </resource>
-                                    </resources>
-                                </configuration>
-                            </execution>
-                        </executions>
-                    </plugin>
-                    <plugin>
-                        <groupId>org.panteleyev</groupId>
-                        <artifactId>jlink-maven-plugin</artifactId>
-                        <version>${jlink.maven.plugin.version}</version>
+                        <addModules>
+                            <addModule>java.base</addModule>
+                            <addModule>java.desktop</addModule>
+                            <addModule>java.logging</addModule>
+                            <addModule>java.xml</addModule>
+                            <addModule>java.prefs</addModule>
+                            <addModule>java.datatransfer</addModule>
+                            <addModule>java.management</addModule>
+                            <addModule>java.naming</addModule>
+                            <addModule>jdk.unsupported</addModule>
+                        </addModules>
 
-                        <executions>
-                            <execution>
-                                <id>jlink-runtime</id>
-                                <phase>package</phase>
-                                <goals>
-                                    <goal>jlink</goal>
-                                </goals>
-                            </execution>
-                        </executions>
+                        <stripDebug>false</stripDebug>
+                        <noHeaderFiles>true</noHeaderFiles>
+                        <noManPages>true</noManPages>
+                    </configuration>
+                </plugin>
 
-                        <configuration>
-                            <output>${jlink.output.directory}</output>
+                <plugin>
+                    <groupId>org.panteleyev</groupId>
+                    <artifactId>jpackage-maven-plugin</artifactId>
+                    <version>${jpackage.maven.plugin.version}</version>
 
-                            <addModules>
-                                <addModule>java.base</addModule>
-                                <addModule>java.desktop</addModule>
-                                <addModule>java.logging</addModule>
-                                <addModule>java.xml</addModule>
-                                <addModule>java.prefs</addModule>
-                                <addModule>java.datatransfer</addModule>
-                                <addModule>java.management</addModule>
-                                <addModule>java.naming</addModule>
-                                <addModule>jdk.unsupported</addModule>
-                            </addModules>
+                    <!-- Base config shared by all OSes -->
+                    <configuration>
+                        <name>Nautilus</name>
+                        <appVersion>${project.version}</appVersion>
+                        <vendor>eggy03</vendor>
+                        <description>${project.name}</description>
 
-                            <stripDebug>false</stripDebug>
-                            <noHeaderFiles>true</noHeaderFiles>
-                            <noManPages>true</noManPages>
-                        </configuration>
-                    </plugin>
+                        <!-- App-image only -->
+                        <type>APP_IMAGE</type>
 
-                    <plugin>
-                        <groupId>org.panteleyev</groupId>
-                        <artifactId>jpackage-maven-plugin</artifactId>
-                        <version>${jpackage.mave.plugin.version}</version>
+                        <!-- Fat JAR -->
+                        <input>${app.fatjar.directory}</input>
+                        <mainJar>${app.fatjar.name}</mainJar>
+                        <mainClass>${app.main.class}</mainClass>
 
-                        <!-- Base config shared by all OSes -->
-                        <configuration>
-                            <name>Nautilus</name>
-                            <appVersion>${project.version}</appVersion>
-                            <vendor>eggy03</vendor>
-                            <description>${project.name}</description>
+                        <!-- Custom JRE created by jlink -->
+                        <runtimeImage>${jlink.output.directory}</runtimeImage>
 
-                            <!-- App-image only -->
-                            <type>APP_IMAGE</type>
+                        <!-- Output -->
+                        <destination>${jpackage.output.directory}</destination>
 
-                            <!-- Fat JAR -->
-                            <input>${app.fatjar.directory}</input>
-                            <mainJar>${app.fatjar.name}</mainJar>
-                            <mainClass>${app.main.class}</mainClass>
+                        <!-- JVM opts -->
+                        <javaOptions>
+                            <option>-Dfile.encoding=UTF-8</option>
+                        </javaOptions>
 
-                            <!-- Custom JRE created by jlink -->
-                            <runtimeImage>${jlink.output.directory}</runtimeImage>
+                        <!-- Windows GUI -->
+                        <winConsole>false</winConsole>
+                    </configuration>
 
-                            <!-- Output -->
-                            <destination>${jpackage.output.directory}</destination>
+                    <!-- OS-selectable executions -->
+                    <executions>
 
-                            <!-- JVM opts -->
-                            <javaOptions>
-                                <option>-Dfile.encoding=UTF-8</option>
-                            </javaOptions>
+                        <!-- Windows -->
+                        <execution>
+                            <id>win</id>
+                            <configuration>
+                                <icon>${project.windows.icon}</icon>
+                            </configuration>
+                        </execution>
 
-                            <!-- Windows GUI -->
-                            <winConsole>false</winConsole>
-                        </configuration>
+                        <!-- Linux -->
+                        <execution>
+                            <id>linux</id>
+                            <configuration>
+                                <icon>${project.linux.icon}</icon>
+                            </configuration>
+                        </execution>
 
-                        <!-- OS-selectable executions -->
-                        <executions>
+                    </executions>
+                </plugin>
 
-                            <!-- Windows -->
-                            <execution>
-                                <id>win</id>
-                                <configuration>
-                                    <icon>${project.windows.icon}</icon>
-                                </configuration>
-                            </execution>
-
-                            <!-- Linux -->
-                            <execution>
-                                <id>linux</id>
-                                <configuration>
-                                    <icon>${project.linux.icon}</icon>
-                                </configuration>
-                            </execution>
-
-                        </executions>
-                    </plugin>
-
-                </plugins>
-            </build>
-        </profile>
-    </profiles>
+            </plugins>
+        </build>
+    </profile>
+</profiles>
 </project>
