@@ -5,16 +5,15 @@
 package io.github.eggy03.nautilus.linux;
 
 import com.formdev.flatlaf.FlatLaf;
+import io.github.eggy03.nautilus.linux.ui.primary.MainUI;
+import io.github.eggy03.nautilus.linux.ui.secondary.ExceptionUI;
+import io.github.eggy03.nautilus.linux.ui.themes.StandardDarkTheme;
+import io.github.eggy03.nautilus.linux.utility.OSDetection;
+import io.github.eggy03.nautilus.linux.utility.UIManagerConfigurations;
 import io.github.eggy03.theme.manager.ThemeManager;
-import io.github.eggy03.nautilus.linux.common.constant.OSConstants;
-import io.github.eggy03.nautilus.linux.common.themes.StandardDarkTheme;
-import io.github.eggy03.nautilus.linux.common.ui.ExceptionUI;
-import io.github.eggy03.nautilus.linux.common.utilities.UIManagerConfigurations;
-import io.github.eggy03.nautilus.linux.linux.LinuxUI;
 import lombok.extern.slf4j.Slf4j;
 
 import java.awt.EventQueue;
-import java.util.Objects;
 
 @Slf4j
 public class Start {
@@ -26,25 +25,25 @@ public class Start {
 
         ThemeManager themeManager = new ThemeManager(Start.class);
 
-        log.info("Detected OS: {}", OSConstants.getCurrentOS());
+        log.info("Detected OS: {}", OSDetection.getCurrentOS());
         FlatLaf.registerCustomDefaultsSource("themes"); // for maven build, this points towards src/main/resources/themes
 
-        EventQueue.invokeLater(()-> {
+        EventQueue.invokeLater(() -> {
             themeManager.loadAndApplyRegisteredThemeOrFallback(StandardDarkTheme.class.getName());
             themeManager.loadAndApplyColorFilter();
 
             UIManagerConfigurations.enableRoundComponents();
             UIManagerConfigurations.enableTabSeparators(true);
-            
+
             launchUIBasedOnOS();
         });
     }
 
     private static void launchUIBasedOnOS() {
-        if (Objects.requireNonNull(OSConstants.detectOs()) == OSConstants.LINUX) {
-            new LinuxUI().setVisible(true);
+        if (OSDetection.isLinux()) {
+            new MainUI().setVisible(true);
         } else {
-            new ExceptionUI("Unsupported OS", OSConstants.getCurrentOS() + " is not supported");
+            new ExceptionUI("Unsupported OS", OSDetection.getCurrentOS() + " is not supported");
         }
     }
 }
