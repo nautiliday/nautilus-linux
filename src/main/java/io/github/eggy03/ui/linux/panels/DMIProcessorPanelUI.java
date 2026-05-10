@@ -4,11 +4,11 @@
  */
 package io.github.eggy03.ui.linux.panels;
 
-import java.awt.BorderLayout;
-import java.awt.GridLayout;
-import java.awt.Toolkit;
-import java.awt.datatransfer.StringSelection;
-import java.util.List;
+import com.formdev.flatlaf.extras.FlatSVGIcon;
+import io.github.eggy03.ui.linux.worker.DMICacheWorker;
+import io.github.eggy03.ui.linux.worker.DMIProcessorWorker;
+import io.github.eggy03.ui.linux.worker.SystemUUIDWorker;
+import net.miginfocom.swing.MigLayout;
 
 import javax.swing.JButton;
 import javax.swing.JComboBox;
@@ -19,14 +19,11 @@ import javax.swing.JTextArea;
 import javax.swing.JTextField;
 import javax.swing.border.BevelBorder;
 import javax.swing.border.TitledBorder;
-
-import com.formdev.flatlaf.extras.FlatSVGIcon;
-
-import io.github.eggy03.ui.linux.worker.DMICacheWorker;
-import io.github.eggy03.ui.linux.worker.DMIProcessorWorker;
-import io.github.eggy03.ui.linux.worker.SystemUUIDWorker;
-import io.github.eggy03.ui.windows.panels.WMIProcessorPanelUI;
-import net.miginfocom.swing.MigLayout;
+import java.awt.BorderLayout;
+import java.awt.GridLayout;
+import java.awt.Toolkit;
+import java.awt.datatransfer.StringSelection;
+import java.util.List;
 
 public class DMIProcessorPanelUI extends JPanel {
 
@@ -86,7 +83,7 @@ public class DMIProcessorPanelUI extends JPanel {
 		systemIdTextField.setEditable(false);
 		
 		JButton copySystemId = new JButton();
-		copySystemId.setIcon(new FlatSVGIcon(WMIProcessorPanelUI.class.getResource("/icons/general_icons/copy.svg")));
+		copySystemId.setIcon(new FlatSVGIcon(DMIProcessorPanelUI.class.getResource("/icons/general_icons/copy.svg")));
 		copySystemId.addActionListener(copyAction -> {
 			StringSelection textToCopy = new StringSelection(systemIdTextField.getText());
 			Toolkit.getDefaultToolkit().getSystemClipboard().setContents(textToCopy, null);

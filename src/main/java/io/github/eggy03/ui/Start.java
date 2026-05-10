@@ -11,10 +11,10 @@ import io.github.eggy03.ui.common.themes.StandardDarkTheme;
 import io.github.eggy03.ui.common.ui.ExceptionUI;
 import io.github.eggy03.ui.common.utilities.UIManagerConfigurations;
 import io.github.eggy03.ui.linux.LinuxUI;
-import io.github.eggy03.ui.windows.WindowsUI;
 import lombok.extern.slf4j.Slf4j;
 
 import java.awt.EventQueue;
+import java.util.Objects;
 
 @Slf4j
 public class Start {
@@ -22,20 +22,7 @@ public class Start {
     /**
      * Launch the application.
      */
-    @SuppressWarnings("java:S1192")
     public static void main(String[] args) {
-
-        // for native builds, 'java.home' stays null
-        // in such cases, we need to provide a custom path cause our codebase depends on java.home usage
-        String defaultJavaHome = System.getProperty("java.home");
-        if (defaultJavaHome == null || defaultJavaHome.isBlank()) {
-            if (args.length > 0 && !args[0].isBlank())
-                System.setProperty("java.home", args[0]);
-            else
-                throw new IllegalStateException("java.home must be provided via arg or JAVA_HOME");
-        }
-        log.info("java.home found at: {}", System.getProperty("java.home"));
-
 
         ThemeManager themeManager = new ThemeManager(Start.class);
 
@@ -54,10 +41,10 @@ public class Start {
     }
 
     private static void launchUIBasedOnOS() {
-        switch (OSConstants.detectOs()) {
-            case WINDOWS -> new WindowsUI().setVisible(true);
-            case LINUX -> new LinuxUI().setVisible(true);
-            default -> new ExceptionUI("Unsupported OS", OSConstants.getCurrentOS() + " is not supported");
+        if (Objects.requireNonNull(OSConstants.detectOs()) == OSConstants.LINUX) {
+            new LinuxUI().setVisible(true);
+        } else {
+            new ExceptionUI("Unsupported OS", OSConstants.getCurrentOS() + " is not supported");
         }
     }
 }
