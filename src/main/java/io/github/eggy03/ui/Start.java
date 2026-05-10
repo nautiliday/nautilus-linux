@@ -11,10 +11,10 @@ import io.github.eggy03.ui.common.themes.StandardDarkTheme;
 import io.github.eggy03.ui.common.ui.ExceptionUI;
 import io.github.eggy03.ui.common.utilities.UIManagerConfigurations;
 import io.github.eggy03.ui.linux.LinuxUI;
-import io.github.eggy03.ui.windows.WindowsUI;
 import lombok.extern.slf4j.Slf4j;
 
 import java.awt.EventQueue;
+import java.util.Objects;
 
 @Slf4j
 public class Start {
@@ -54,10 +54,10 @@ public class Start {
     }
 
     private static void launchUIBasedOnOS() {
-        switch (OSConstants.detectOs()) {
-            case WINDOWS -> new WindowsUI().setVisible(true);
-            case LINUX -> new LinuxUI().setVisible(true);
-            default -> new ExceptionUI("Unsupported OS", OSConstants.getCurrentOS() + " is not supported");
+        if (Objects.requireNonNull(OSConstants.detectOs()) == OSConstants.LINUX) {
+            new LinuxUI().setVisible(true);
+        } else {
+            new ExceptionUI("Unsupported OS", OSConstants.getCurrentOS() + " is not supported");
         }
     }
 }
