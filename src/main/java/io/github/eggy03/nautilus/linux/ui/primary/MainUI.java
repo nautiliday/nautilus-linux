@@ -5,9 +5,9 @@
 package io.github.eggy03.nautilus.linux.ui.primary;
 
 import com.formdev.flatlaf.extras.FlatSVGIcon;
-import io.github.eggy03.nautilus.linux.ui.primary.panels.DMIBaseboardPanelUI;
-import io.github.eggy03.nautilus.linux.ui.primary.panels.DMIPhysicalMemoryPanelUI;
-import io.github.eggy03.nautilus.linux.ui.primary.panels.DMIProcessorPanelUI;
+import io.github.eggy03.nautilus.linux.ui.primary.panels.BaseboardPanelUI;
+import io.github.eggy03.nautilus.linux.ui.primary.panels.PhysicalMemoryPanelUI;
+import io.github.eggy03.nautilus.linux.ui.primary.panels.ProcessorPanelUI;
 import io.github.eggy03.nautilus.linux.ui.secondary.AboutUI;
 
 import javax.swing.JFrame;
@@ -60,9 +60,9 @@ public class MainUI extends JFrame {
     private JTabbedPane createTabbedPane() {
         JTabbedPane tabbedPane = new JTabbedPane(SwingConstants.TOP);
 
-        tabbedPane.addTab("CPU", new FlatSVGIcon(MainUI.class.getResource("/icons/tab_icons_material_green/CPU.svg")), new DMIProcessorPanelUI().getPanel(), null);
-        tabbedPane.addTab("Memory", new FlatSVGIcon(MainUI.class.getResource("/icons/tab_icons_material_green/RAM.svg")), new DMIPhysicalMemoryPanelUI().getPanel(), null);
-        tabbedPane.addTab("Mainboard", new FlatSVGIcon(MainUI.class.getResource("/icons/tab_icons_material_green/MainBoard.svg")), new DMIBaseboardPanelUI().getPanel(), null);
+        tabbedPane.addTab("CPU", new FlatSVGIcon(MainUI.class.getResource("/icons/tab_icons_material_green/CPU.svg")), new ProcessorPanelUI().getPanel(), null);
+        tabbedPane.addTab("Memory", new FlatSVGIcon(MainUI.class.getResource("/icons/tab_icons_material_green/RAM.svg")), new PhysicalMemoryPanelUI().getPanel(), null);
+        tabbedPane.addTab("Mainboard", new FlatSVGIcon(MainUI.class.getResource("/icons/tab_icons_material_green/MainBoard.svg")), new BaseboardPanelUI().getPanel(), null);
 
         return tabbedPane;
     }

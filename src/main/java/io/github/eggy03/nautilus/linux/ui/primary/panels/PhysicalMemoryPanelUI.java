@@ -17,7 +17,7 @@ import javax.swing.border.TitledBorder;
 import java.awt.GridLayout;
 import java.util.List;
 
-public class DMIPhysicalMemoryPanelUI extends JPanel {
+public class PhysicalMemoryPanelUI extends JPanel {
 
     private JComboBox<String> memoryLocatorComboBox;
     private JTextField setTextField;
@@ -56,7 +56,7 @@ public class DMIPhysicalMemoryPanelUI extends JPanel {
     /**
      * Create the panel.
      */
-    public DMIPhysicalMemoryPanelUI() {
+    public PhysicalMemoryPanelUI() {
         setUI();
         setWorker();
     }

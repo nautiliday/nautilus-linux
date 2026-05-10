@@ -25,7 +25,7 @@ import java.awt.Toolkit;
 import java.awt.datatransfer.StringSelection;
 import java.util.List;
 
-public class DMIProcessorPanelUI extends JPanel {
+public class ProcessorPanelUI extends JPanel {
 
     // hwid
     private JTextField systemIdTextField;
@@ -56,7 +56,7 @@ public class DMIProcessorPanelUI extends JPanel {
     /**
      * Create the panel.
      */
-    public DMIProcessorPanelUI() {
+    public ProcessorPanelUI() {
 
         setLayout(new BorderLayout(0, 0));
 
@@ -83,7 +83,7 @@ public class DMIProcessorPanelUI extends JPanel {
         systemIdTextField.setEditable(false);
 
         JButton copySystemId = new JButton();
-        copySystemId.setIcon(new FlatSVGIcon(DMIProcessorPanelUI.class.getResource("/icons/general_icons/copy.svg")));
+        copySystemId.setIcon(new FlatSVGIcon(ProcessorPanelUI.class.getResource("/icons/general_icons/copy.svg")));
         copySystemId.addActionListener(copyAction -> {
             StringSelection textToCopy = new StringSelection(systemIdTextField.getText());
             Toolkit.getDefaultToolkit().getSystemClipboard().setContents(textToCopy, null);

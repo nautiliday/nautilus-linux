@@ -20,7 +20,7 @@ import javax.swing.border.TitledBorder;
 import java.awt.GridLayout;
 import java.util.List;
 
-public class DMIBaseboardPanelUI extends JPanel {
+public class BaseboardPanelUI extends JPanel {
 
     // baseboard
     private JTextField manufacturerTextField;
@@ -53,7 +53,7 @@ public class DMIBaseboardPanelUI extends JPanel {
     private JTextField firmwareRevisionTextField;
     private JTextArea characteristicsTextArea;
 
-    public DMIBaseboardPanelUI() {
+    public BaseboardPanelUI() {
         setBorder(new TitledBorder(new BevelBorder(BevelBorder.LOWERED, null, null, null, null),
                 "Baseboard and Accessories", TitledBorder.LEADING, TitledBorder.TOP, null, null));
         setLayout(new GridLayout(1, 3, 0, 0));
