@@ -7,14 +7,4 @@ package io.github.eggy03.nautilus.linux.ui.themes;
 import com.formdev.flatlaf.FlatLightLaf;
 
 public class LightPinkTheme extends FlatLightLaf {
-
-    public static boolean setup() {
-        return setup(new LightPinkTheme());
-    }
-
-    @Override
-    public String getName() {
-        return "LightPinkTheme";
-    }
-
 }
