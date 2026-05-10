@@ -9,7 +9,6 @@ import io.github.eggy03.nautilus.linux.ui.primary.panels.DMIBaseboardPanelUI;
 import io.github.eggy03.nautilus.linux.ui.primary.panels.DMIPhysicalMemoryPanelUI;
 import io.github.eggy03.nautilus.linux.ui.primary.panels.DMIProcessorPanelUI;
 import io.github.eggy03.nautilus.linux.ui.secondary.AboutUI;
-import io.github.eggy03.nautilus.linux.ui.secondary.ThemeManagerUI;
 
 import javax.swing.JFrame;
 import javax.swing.JMenu;
@@ -53,14 +52,6 @@ public class MainUI extends JFrame {
         aboutMenuItem.setIcon(new FlatSVGIcon(MainUI.class.getResource("/icons/general_icons/about.svg")));
         aboutMenuItem.addActionListener(event -> new AboutUI().setVisible(true));
         helpMenu.add(aboutMenuItem);
-
-        JMenu appearanceMenu = new JMenu("Appearance");
-        menuBar.add(appearanceMenu);
-
-        JMenuItem themeMenuItem = new JMenuItem("Theme");
-        themeMenuItem.setIcon(new FlatSVGIcon(MainUI.class.getResource("/icons/general_icons/theme.svg")));
-        themeMenuItem.addActionListener(event -> new ThemeManagerUI().setVisible(true));
-        appearanceMenu.add(themeMenuItem);
 
         return menuBar;
 

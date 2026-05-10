@@ -82,12 +82,6 @@
         <scope>runtime</scope>
     </dependency>
 
-    <dependency>
-        <groupId>io.github.eggy03</groupId>
-        <artifactId>swing-theme-manager</artifactId>
-        <version>0.1.0</version>
-    </dependency>
-
     <!-- Logging -->
     <dependency>
         <groupId>org.slf4j</groupId>
