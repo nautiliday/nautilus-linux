@@ -22,20 +22,7 @@ public class Start {
     /**
      * Launch the application.
      */
-    @SuppressWarnings("java:S1192")
     public static void main(String[] args) {
-
-        // for native builds, 'java.home' stays null
-        // in such cases, we need to provide a custom path cause our codebase depends on java.home usage
-        String defaultJavaHome = System.getProperty("java.home");
-        if (defaultJavaHome == null || defaultJavaHome.isBlank()) {
-            if (args.length > 0 && !args[0].isBlank())
-                System.setProperty("java.home", args[0]);
-            else
-                throw new IllegalStateException("java.home must be provided via arg or JAVA_HOME");
-        }
-        log.info("java.home found at: {}", System.getProperty("java.home"));
-
 
         ThemeManager themeManager = new ThemeManager(Start.class);
 
