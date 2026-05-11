@@ -17,361 +17,331 @@ import javax.swing.border.TitledBorder;
 import java.awt.GridLayout;
 import java.util.List;
 
+@SuppressWarnings("java:S1192")
 public class PhysicalMemoryPanelUI extends JPanel {
 
-    private JComboBox<String> memoryLocatorComboBox;
-    private JTextField setTextField;
-    private JTextField assetTagTextField;
-    private JTextField serialNumberTextField;
-    private JTextField partNumberTextField;
-    private JTextField firmwareVersionTextField;
-    private JTextField locatorTextField;
-    private JTextField bankLocatorTextField;
-    private JTextField formFactorTextField;
-    private JTextField typeTextField;
-    private JTextField typeDetailTextField;
-    private JTextField rankLabelTextField;
-    private JTextField sizeTextField;
-    private JTextField dataWidthTextField;
-    private JTextField totalWidthTextField;
-    private JTextField volatileSizeTextField;
-    private JTextField nonVolatileSizeTextField;
-    private JTextField cacheSizeTextField;
-    private JTextField logicalSizeTextField;
-    private JTextField factorySpeedTextField;
-    private JTextField configuredSpeedTextField;
-    private JTextField minimumVoltageTextField;
-    private JTextField maximumVoltageTextField;
-    private JTextField configuredVoltageTextField;
-    private JTextField manufacturerTextField;
-    private JTextField moduleManufacturerIdTextField;
-    private JTextField moduleProductIdTextField;
-    private JTextField mscManufacturerIdTextField;
-    private JTextField mscProductIdTextField;
-    private JTextField memoryTechnologyTextField;
-    private JTextField memoryOperatingModeCapabilityTextField;
-    private JTextField errorHandleTextField;
-    private JTextField arrayHandleTextField;
+    // handles
+    private final JLabel memoryModuleNumberLabel = new JLabel("Memory #");
+    private final JComboBox<String> memoryLocatorComboBox = new JComboBox<>();
 
-    /**
-     * Create the panel.
-     */
-    public PhysicalMemoryPanelUI() {
-        setUI();
-        setWorker();
-    }
+    private final JLabel setLabel = new JLabel("Set");
+    private final JTextField setTextField = new JTextField();
 
-    public JPanel getPanel() {
+    private final JLabel assetTagLabel = new JLabel("Asset Tag");
+    private final JTextField assetTagTextField = new JTextField();
+
+    private final JLabel serialNumberLabel = new JLabel("Serial Number");
+    private final JTextField serialNumberTextField = new JTextField();
+
+    private final JLabel partNumberLabel = new JLabel("Part Number");
+    private final JTextField partNumberTextField = new JTextField();
+
+    private final JLabel firmwareVersionLabel = new JLabel("Firmware Version");
+    private final JTextField firmwareVersionTextField = new JTextField();
+
+    // characteristics
+    private final JLabel locatorLabel = new JLabel("Locator");
+    private final JTextField locatorTextField = new JTextField();
+
+    private final JLabel bankLocatorLabel = new JLabel("Bank Locator");
+    private final JTextField bankLocatorTextField = new JTextField();
+
+    private final JLabel formFactorLabel = new JLabel("Form Factor");
+    private final JTextField formFactorTextField = new JTextField();
+
+    private final JLabel typeLabel = new JLabel("Type");
+    private final JTextField typeTextField = new JTextField();
+
+    private final JLabel typeDetailLabel = new JLabel("Type Detail");
+    private final JTextField typeDetailTextField = new JTextField();
+
+    private final JLabel rankLabel = new JLabel("Rank");
+    private final JTextField rankLabelTextField = new JTextField();
+
+    // size
+    private final JLabel sizeLabel = new JLabel("Size");
+    private final JTextField sizeTextField = new JTextField();
+
+    private final JLabel dataWidthLabel = new JLabel("Data Width");
+    private final JTextField dataWidthTextField = new JTextField();
+
+    private final JLabel totalWidthLabel = new JLabel("Total Width");
+    private final JTextField totalWidthTextField = new JTextField();
+
+    private final JLabel volatileSizeLabel = new JLabel("Volatile Size");
+    private final JTextField volatileSizeTextField = new JTextField();
+
+    private final JLabel nonVolatileSizeLabel = new JLabel("Non-Volatile Size");
+    private final JTextField nonVolatileSizeTextField = new JTextField();
+
+    private final JLabel cacheSizeLabel = new JLabel("Cache Size");
+    private final JTextField cacheSizeTextField = new JTextField();
+
+    private final JLabel logicalSizeLabel = new JLabel("Logical Size");
+    private final JTextField logicalSizeTextField = new JTextField();
+
+    // speed and voltage
+    private final JLabel factorySpeedLabel = new JLabel("Factory Speed");
+    private final JTextField factorySpeedTextField = new JTextField();
+
+    private final JLabel configuredSpeedLabel = new JLabel("Configured Speed");
+    private final JTextField configuredSpeedTextField = new JTextField();
+
+    private final JLabel minimumVoltageLabel = new JLabel("Minimum Voltage");
+    private final JTextField minimumVoltageTextField = new JTextField();
+
+    private final JLabel maximumVoltageLabel = new JLabel("Maximum Voltage");
+    private final JTextField maximumVoltageTextField = new JTextField();
+
+    private final JLabel configuredVoltageLabel = new JLabel("Configured Voltage");
+    private final JTextField configuredVoltageTextField = new JTextField();
+
+    // manufacturer and technology
+    private final JLabel manufacturerLabel = new JLabel("Manufacturer");
+    private final JTextField manufacturerTextField = new JTextField();
+
+    private final JLabel moduleManufacturerIdLabel = new JLabel("Module Manufacturer ID");
+    private final JTextField moduleManufacturerIdTextField = new JTextField();
+
+    private final JLabel moduleProductIdLabel = new JLabel("Module Product ID");
+    private final JTextField moduleProductIdTextField = new JTextField();
+
+    private final JLabel mscManufacturerIdLabel = new JLabel("MSC Manufacturer ID");
+    private final JTextField mscManufacturerIdTextField = new JTextField();
+
+    private final JLabel mscProductIdLabel = new JLabel("MSC Product ID");
+    private final JTextField mscProductIdTextField = new JTextField();
+
+    private final JLabel memoryTechnologyLabel = new JLabel("Memory Technology");
+    private final JTextField memoryTechnologyTextField = new JTextField();
+
+    private final JLabel memoryOperatingModeCapabilityLabel = new JLabel("Memory Operating Mode Capability");
+    private final JTextField memoryOperatingModeCapabilityTextField = new JTextField();
+
+    // extra
+    private final JLabel arrayHandleLabel = new JLabel("Array Handle");
+    private final JTextField arrayHandleTextField = new JTextField();
+
+    private final JLabel errorHandleLabel = new JLabel("Error Handle");
+    private final JTextField errorHandleTextField = new JTextField();
+
+
+    public PhysicalMemoryPanelUI initUI() {
+
+        setLayout(new MigLayout("insets 0", "[grow][grow][grow]", "[grow][grow]"));
+        setBorder(new TitledBorder(new BevelBorder(BevelBorder.LOWERED, null, null, null, null), "Memory", TitledBorder.LEADING, TitledBorder.TOP, null, null));
+
         return this;
     }
 
-    private void setUI() {
+    public PhysicalMemoryPanelUI initComponents() {
 
-        setLayout(new GridLayout(1, 0, 0, 0));
+        add(new JScrollPane(createHandlePanel()), "cell 0 0, grow");
+        add(new JScrollPane(createCharacteristicsPanel()), "cell 1 0, grow");
+        add(new JScrollPane(createSizePanel()), "cell 2 0, grow");
+        add(new JScrollPane(createSpeedAndVoltagePanel()), "cell 0 1, grow");
+        add(new JScrollPane(createManufacturerPanel()), "cell 1 1, grow");
+        add(new JScrollPane(createExtraPanel()), "cell 2 1, grow");
 
-        // add panel
-        JPanel memoryPanel = new JPanel();
-        memoryPanel.setBorder(new TitledBorder(new BevelBorder(BevelBorder.LOWERED, null, null, null, null), "Memory", TitledBorder.LEADING, TitledBorder.TOP, null, null));
-        memoryPanel.setLayout(new GridLayout(2, 3, 0, 0));
-
-        add(memoryPanel);
-
-        // add sub-panels
-        memoryPanel.add(createHandlePanel());
-        memoryPanel.add(createCharacteristicsPanel());
-        memoryPanel.add(createSizePanel());
-        memoryPanel.add(createSpeedAndVoltagePanel());
-        memoryPanel.add(createManufacturerPanel());
-        memoryPanel.add(createExtraPanel());
-
+        return this;
     }
 
-    private JScrollPane createHandlePanel() {
+    private JPanel createHandlePanel() {
+
         JPanel panel = new JPanel();
         panel.setBorder(new TitledBorder(null, "Handles", TitledBorder.LEADING, TitledBorder.TOP, null, null));
         panel.setLayout(new MigLayout("insets 0", "[][grow]", "[][][][][][]"));
 
-        JLabel memoryModuleNumberLabel = new JLabel("Memory #");
         panel.add(memoryModuleNumberLabel, "cell 0 0,alignx leading");
-
-        memoryLocatorComboBox = new JComboBox<>();
         panel.add(memoryLocatorComboBox, "cell 1 0,growx");
 
-        JLabel setLabel = new JLabel("Set");
         panel.add(setLabel, "cell 0 1,alignx leading");
-
-        setTextField = new JTextField();
-        setTextField.setEditable(false);
         panel.add(setTextField, "cell 1 1,growx");
 
-        JLabel assetTagLabel = new JLabel("Asset Tag");
         panel.add(assetTagLabel, "cell 0 2,alignx leading");
-
-        assetTagTextField = new JTextField();
-        assetTagTextField.setEditable(false);
         panel.add(assetTagTextField, "cell 1 2,growx");
 
-        JLabel serialNumberLabel = new JLabel("Serial Number");
         panel.add(serialNumberLabel, "cell 0 3,alignx leading");
-
-        serialNumberTextField = new JTextField();
-        serialNumberTextField.setEditable(false);
         panel.add(serialNumberTextField, "cell 1 3,growx");
 
-        JLabel partNumberLabel = new JLabel("Part Number");
         panel.add(partNumberLabel, "cell 0 4,alignx leading");
-
-        partNumberTextField = new JTextField();
-        partNumberTextField.setEditable(false);
         panel.add(partNumberTextField, "cell 1 4,growx");
 
-        JLabel firmwareVersionLabel = new JLabel("Firmware Version");
         panel.add(firmwareVersionLabel, "cell 0 5,alignx leading");
-
-        firmwareVersionTextField = new JTextField();
-        firmwareVersionTextField.setEditable(false);
         panel.add(firmwareVersionTextField, "cell 1 5,growx");
 
-        return new JScrollPane(panel);
+        setTextField.setEditable(false);
+        assetTagTextField.setEditable(false);
+        serialNumberTextField.setEditable(false);
+        partNumberTextField.setEditable(false);
+        firmwareVersionTextField.setEditable(false);
+
+        return panel;
     }
 
-    private JScrollPane createCharacteristicsPanel() {
+    private JPanel createCharacteristicsPanel() {
+
         JPanel panel = new JPanel();
         panel.setBorder(new TitledBorder(null, "Characteristics", TitledBorder.LEADING, TitledBorder.TOP, null, null));
         panel.setLayout(new MigLayout("insets 0", "[][grow]", "[][][][][][]"));
 
-        JLabel locatorLabel = new JLabel("Locator");
         panel.add(locatorLabel, "cell 0 0,alignx leading");
-
-        locatorTextField = new JTextField();
-        locatorTextField.setEditable(false);
         panel.add(locatorTextField, "cell 1 0,growx");
 
-        JLabel bankLocatorLabel = new JLabel("Bank Locator");
         panel.add(bankLocatorLabel, "cell 0 1,alignx leading");
-
-        bankLocatorTextField = new JTextField();
-        bankLocatorTextField.setEditable(false);
         panel.add(bankLocatorTextField, "cell 1 1,growx");
 
-        JLabel formFactorLabel = new JLabel("Form Factor");
         panel.add(formFactorLabel, "cell 0 2,alignx leading");
-
-        formFactorTextField = new JTextField();
-        formFactorTextField.setEditable(false);
         panel.add(formFactorTextField, "cell 1 2,growx");
 
-        JLabel typeLabel = new JLabel("Type");
         panel.add(typeLabel, "cell 0 3,alignx leading");
-
-        typeTextField = new JTextField();
-        typeTextField.setEditable(false);
         panel.add(typeTextField, "cell 1 3,growx");
 
-        JLabel typeDetailLabel = new JLabel("Type Detail");
         panel.add(typeDetailLabel, "cell 0 4,alignx leading");
-
-        typeDetailTextField = new JTextField();
-        typeDetailTextField.setEditable(false);
         panel.add(typeDetailTextField, "cell 1 4,growx");
 
-        JLabel rankLabel = new JLabel("Rank");
         panel.add(rankLabel, "cell 0 5,alignx leading");
-
-        rankLabelTextField = new JTextField();
-        rankLabelTextField.setEditable(false);
         panel.add(rankLabelTextField, "cell 1 5,growx");
 
-        return new JScrollPane(panel);
+        locatorTextField.setEditable(false);
+        bankLocatorTextField.setEditable(false);
+        formFactorTextField.setEditable(false);
+        typeTextField.setEditable(false);
+        typeDetailTextField.setEditable(false);
+        rankLabelTextField.setEditable(false);
+
+        return panel;
 
     }
 
-    private JScrollPane createSizePanel() {
+    private JPanel createSizePanel() {
+
         JPanel panel = new JPanel();
         panel.setBorder(new TitledBorder(null, "Size", TitledBorder.LEADING, TitledBorder.TOP, null, null));
         panel.setLayout(new MigLayout("insets 0", "[][grow]", "[][][][][][][]"));
 
-        JLabel sizeLabel = new JLabel("Size");
         panel.add(sizeLabel, "cell 0 0,alignx leading");
-
-        sizeTextField = new JTextField();
-        sizeTextField.setEditable(false);
         panel.add(sizeTextField, "cell 1 0,growx");
 
-        JLabel dataWidthLabel = new JLabel("Data Width");
         panel.add(dataWidthLabel, "cell 0 1,alignx leading");
-
-        dataWidthTextField = new JTextField();
-        dataWidthTextField.setEditable(false);
         panel.add(dataWidthTextField, "cell 1 1,growx");
 
-        JLabel totalWidthLabel = new JLabel("Total Width");
         panel.add(totalWidthLabel, "cell 0 2,alignx leading");
-
-        totalWidthTextField = new JTextField();
-        totalWidthTextField.setEditable(false);
         panel.add(totalWidthTextField, "cell 1 2,growx");
 
-        JLabel volatileSizeLabel = new JLabel("Volatile Size");
         panel.add(volatileSizeLabel, "cell 0 3,alignx leading");
-
-        volatileSizeTextField = new JTextField();
-        volatileSizeTextField.setEditable(false);
         panel.add(volatileSizeTextField, "cell 1 3,growx");
 
-        JLabel nonVolatileSizeLabel = new JLabel("Non-Volatile Size");
         panel.add(nonVolatileSizeLabel, "cell 0 4,alignx leading");
-
-        nonVolatileSizeTextField = new JTextField();
-        nonVolatileSizeTextField.setEditable(false);
         panel.add(nonVolatileSizeTextField, "cell 1 4,growx");
 
-        JLabel cacheSizeLabel = new JLabel("Cache Size");
         panel.add(cacheSizeLabel, "cell 0 5,alignx leading");
-
-        cacheSizeTextField = new JTextField();
-        cacheSizeTextField.setEditable(false);
         panel.add(cacheSizeTextField, "cell 1 5,growx");
 
-        JLabel logicalSizeLabel = new JLabel("Logical Size");
         panel.add(logicalSizeLabel, "cell 0 6,alignx leading");
-        logicalSizeTextField = new JTextField();
-
-        logicalSizeTextField.setEditable(false);
         panel.add(logicalSizeTextField, "cell 1 6,growx");
 
-        return new JScrollPane(panel);
+        sizeTextField.setEditable(false);
+        dataWidthTextField.setEditable(false);
+        totalWidthTextField.setEditable(false);
+        volatileSizeTextField.setEditable(false);
+        nonVolatileSizeTextField.setEditable(false);
+        cacheSizeTextField.setEditable(false);
+        logicalSizeTextField.setEditable(false);
+
+        return panel;
 
     }
 
-    private JScrollPane createSpeedAndVoltagePanel() {
+    private JPanel createSpeedAndVoltagePanel() {
+
         JPanel panel = new JPanel();
         panel.setBorder(new TitledBorder(null, "Speed And Voltage", TitledBorder.LEADING, TitledBorder.TOP, null, null));
         panel.setLayout(new MigLayout("insets 0", "[][grow]", "[][][][][]"));
 
-        JLabel factorySpeedLabel = new JLabel("Factory Speed");
         panel.add(factorySpeedLabel, "cell 0 0,alignx leading");
-
-        factorySpeedTextField = new JTextField();
-        factorySpeedTextField.setEditable(false);
         panel.add(factorySpeedTextField, "cell 1 0,growx");
 
-        JLabel configuredSpeedLabel = new JLabel("Configured Speed");
         panel.add(configuredSpeedLabel, "cell 0 1,alignx leading");
-
-        configuredSpeedTextField = new JTextField();
-        configuredSpeedTextField.setEditable(false);
         panel.add(configuredSpeedTextField, "cell 1 1,growx");
 
-        JLabel minimumVoltageLabel = new JLabel("Minimum Volage");
         panel.add(minimumVoltageLabel, "cell 0 2,alignx leading");
-
-        minimumVoltageTextField = new JTextField();
-        minimumVoltageTextField.setEditable(false);
         panel.add(minimumVoltageTextField, "cell 1 2,growx");
 
-        JLabel maximumVoltageLabel = new JLabel("Maximum Voltage");
         panel.add(maximumVoltageLabel, "cell 0 3,alignx leading");
-
-        maximumVoltageTextField = new JTextField();
-        maximumVoltageTextField.setEditable(false);
         panel.add(maximumVoltageTextField, "cell 1 3,growx");
 
-        JLabel configuredVoltageLabel = new JLabel("Configured Voltage");
         panel.add(configuredVoltageLabel, "cell 0 4,alignx leading");
-
-        configuredVoltageTextField = new JTextField();
-        configuredVoltageTextField.setEditable(false);
         panel.add(configuredVoltageTextField, "cell 1 4,growx");
 
-        return new JScrollPane(panel);
+        factorySpeedTextField.setEditable(false);
+        configuredSpeedTextField.setEditable(false);
+        minimumVoltageTextField.setEditable(false);
+        maximumVoltageTextField.setEditable(false);
+        configuredVoltageTextField.setEditable(false);
+
+        return panel;
 
     }
 
-    private JScrollPane createManufacturerPanel() {
+    private JPanel createManufacturerPanel() {
+
         JPanel panel = new JPanel();
         panel.setBorder(new TitledBorder(null, "Manufacturer And Technology", TitledBorder.LEADING, TitledBorder.TOP, null, null));
         panel.setLayout(new MigLayout("insets 0", "[][grow]", "[][][][][][][]"));
 
-        JLabel manufacturerLabel = new JLabel("Manufacturer");
         panel.add(manufacturerLabel, "cell 0 0,alignx leading");
-
-        manufacturerTextField = new JTextField();
-        manufacturerTextField.setEditable(false);
         panel.add(manufacturerTextField, "cell 1 0,growx");
 
-        JLabel moduleManufacturerIdLabel = new JLabel("Module Manufacturer ID");
         panel.add(moduleManufacturerIdLabel, "cell 0 1,alignx leading");
-
-        moduleManufacturerIdTextField = new JTextField();
-        moduleManufacturerIdTextField.setEditable(false);
         panel.add(moduleManufacturerIdTextField, "cell 1 1,growx");
 
-        JLabel moduleProductIdLabel = new JLabel("Module Product ID");
         panel.add(moduleProductIdLabel, "cell 0 2,alignx leading");
-
-        moduleProductIdTextField = new JTextField();
-        moduleProductIdTextField.setEditable(false);
         panel.add(moduleProductIdTextField, "cell 1 2,growx");
 
-        JLabel mscManufacturerIdLabel = new JLabel("MSC Manufacturer ID");
-        mscManufacturerIdLabel.setToolTipText("Memory Sub-System Controller Manufacturer ID");
         panel.add(mscManufacturerIdLabel, "cell 0 3,alignx leading");
-
-        mscManufacturerIdTextField = new JTextField();
-        mscManufacturerIdTextField.setEditable(false);
         panel.add(mscManufacturerIdTextField, "cell 1 3,growx");
 
-        JLabel mscProductIdLabel = new JLabel("MSC Product ID");
-        mscProductIdLabel.setToolTipText("Memory Sub-System Controller Product ID");
         panel.add(mscProductIdLabel, "cell 0 4,alignx leading");
-
-        mscProductIdTextField = new JTextField();
-        mscProductIdTextField.setEditable(false);
         panel.add(mscProductIdTextField, "cell 1 4,growx");
 
-        JLabel memoryTechnologyLabel = new JLabel("Memory Technology");
         panel.add(memoryTechnologyLabel, "cell 0 5,alignx leading");
-
-        memoryTechnologyTextField = new JTextField();
-        memoryTechnologyTextField.setEditable(false);
         panel.add(memoryTechnologyTextField, "cell 1 5,growx");
 
-        JLabel memoryOperatingModeCapabilityLabel = new JLabel("Memory Operating Mode Capability");
         panel.add(memoryOperatingModeCapabilityLabel, "cell 0 6,alignx leading");
-
-        memoryOperatingModeCapabilityTextField = new JTextField();
-        memoryOperatingModeCapabilityTextField.setEditable(false);
         panel.add(memoryOperatingModeCapabilityTextField, "cell 1 6,growx");
 
-        return new JScrollPane(panel);
+        mscManufacturerIdLabel.setToolTipText("Memory Sub-System Controller Manufacturer ID");
+        mscProductIdLabel.setToolTipText("Memory Sub-System Controller Product ID");
+
+        manufacturerTextField.setEditable(false);
+        moduleManufacturerIdTextField.setEditable(false);
+        moduleProductIdTextField.setEditable(false);
+        mscManufacturerIdTextField.setEditable(false);
+        mscProductIdTextField.setEditable(false);
+        memoryTechnologyTextField.setEditable(false);
+        memoryOperatingModeCapabilityTextField.setEditable(false);
+
+        return panel;
     }
 
-    private JScrollPane createExtraPanel() {
+    private JPanel createExtraPanel() {
 
         JPanel panel = new JPanel();
         panel.setBorder(new TitledBorder(null, "Extra", TitledBorder.LEADING, TitledBorder.TOP, null, null));
         panel.setLayout(new MigLayout("insets 0", "[][grow]", "[][]"));
 
-        JLabel arrayHandleLabel = new JLabel("Array Handle");
         panel.add(arrayHandleLabel, "cell 0 0,alignx leading");
-
-        arrayHandleTextField = new JTextField();
-        arrayHandleTextField.setEditable(false);
         panel.add(arrayHandleTextField, "cell 1 0,growx");
 
-        JLabel errorHandleLabel = new JLabel("Error Handle");
         panel.add(errorHandleLabel, "cell 0 1,alignx leading");
-
-        errorHandleTextField = new JTextField();
-        errorHandleTextField.setEditable(false);
         panel.add(errorHandleTextField, "cell 1 1,growx");
 
-        return new JScrollPane(panel);
+        return panel;
     }
 
 
-    private void setWorker() {
+    public PhysicalMemoryPanelUI setWorkers() {
 
         List<JTextField> textFields = List.of(setTextField, assetTagTextField, serialNumberTextField,
                 partNumberTextField, firmwareVersionTextField, locatorTextField,
@@ -385,6 +355,8 @@ public class PhysicalMemoryPanelUI extends JPanel {
         );
 
         new DMIPhysicalMemoryWorker(memoryLocatorComboBox, textFields).execute();
+
+        return this;
     }
 
 }

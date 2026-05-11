@@ -14,7 +14,6 @@ import javax.swing.JFrame;
 import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
-import javax.swing.JPanel;
 import javax.swing.JTabbedPane;
 import javax.swing.SwingConstants;
 import javax.swing.WindowConstants;
@@ -23,35 +22,37 @@ import java.awt.Toolkit;
 
 public class MainUI extends JFrame {
 
-    /**
-     * Create the frame.
-     */
-    public MainUI() {
+    public MainUI initUI() {
 
         setTitle("Nautilus");
         setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         setBounds(0, 0, 900, 650);
         setIconImage(Toolkit.getDefaultToolkit().getImage(MainUI.class.getResource("/icons/icon_main.png")));
 
-        JPanel contentPane = new JPanel();
-        contentPane.setLayout(new BorderLayout(0, 0));
+        setLayout(new BorderLayout(0, 0));
 
-        contentPane.add(createMenu(), BorderLayout.NORTH);
-        contentPane.add(createTabbedPane(), BorderLayout.CENTER);
+        return this;
+    }
 
-        setContentPane(contentPane);
+    public MainUI initComponents() {
+
+        add(createMenu(), BorderLayout.NORTH);
+        add(createTabbedPane(), BorderLayout.CENTER);
+
+        return this;
     }
 
     private JMenuBar createMenu() {
         JMenuBar menuBar = new JMenuBar();
 
         JMenu helpMenu = new JMenu("Help");
-        menuBar.add(helpMenu);
 
         JMenuItem aboutMenuItem = new JMenuItem("About");
         aboutMenuItem.setIcon(new FlatSVGIcon(MainUI.class.getResource("/icons/general_icons/about.svg")));
         aboutMenuItem.addActionListener(event -> new AboutUI().setVisible(true));
+
         helpMenu.add(aboutMenuItem);
+        menuBar.add(helpMenu);
 
         return menuBar;
 
@@ -60,9 +61,26 @@ public class MainUI extends JFrame {
     private JTabbedPane createTabbedPane() {
         JTabbedPane tabbedPane = new JTabbedPane(SwingConstants.TOP);
 
-        tabbedPane.addTab("CPU", new FlatSVGIcon(MainUI.class.getResource("/icons/tab_icons_material_green/CPU.svg")), new ProcessorPanelUI().getPanel(), null);
-        tabbedPane.addTab("Memory", new FlatSVGIcon(MainUI.class.getResource("/icons/tab_icons_material_green/RAM.svg")), new PhysicalMemoryPanelUI().getPanel(), null);
-        tabbedPane.addTab("Mainboard", new FlatSVGIcon(MainUI.class.getResource("/icons/tab_icons_material_green/MainBoard.svg")), new BaseboardPanelUI().getPanel(), null);
+        tabbedPane.addTab(
+                "CPU",
+                new FlatSVGIcon(MainUI.class.getResource("/icons/tab_icons_material_green/CPU.svg")),
+                new ProcessorPanelUI().initUI().initComponents().setWorkers(),
+                null
+        );
+
+        tabbedPane.addTab(
+                "Memory",
+                new FlatSVGIcon(MainUI.class.getResource("/icons/tab_icons_material_green/RAM.svg")),
+                new PhysicalMemoryPanelUI().initUI().initComponents().setWorkers(),
+                null
+        );
+
+        tabbedPane.addTab(
+                "Mainboard",
+                new FlatSVGIcon(MainUI.class.getResource("/icons/tab_icons_material_green/MainBoard.svg")),
+                new BaseboardPanelUI().initUI().initComponents().setWorkers(),
+                null
+        );
 
         return tabbedPane;
     }
