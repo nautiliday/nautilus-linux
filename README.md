@@ -6,8 +6,7 @@ Linux build of Nautilus
 
 ## Pre-Built Binaries
 
-Pre-built binaries are not signed, which means your antivirus or smart-screen may flag it. Make sure you download
-it from trusted sources only.
+Pre-built binaries are not signed. Make sure you download from trusted sources only.
 
 Binaries can be found in [Releases](https://github.com/nautiliday/nautilus-linux/releases) page.
 
@@ -30,7 +29,7 @@ cd Nautilus
 ./mvnw -Pdist package jpackage:jpackage@linux
 ```
 
-The generated binaries will be available in `../Nautilus/target/output`
+The generated binaries will be available in `{project.build.directory}/target/output`
 
 > [!IMPORTANT]
 > Note that each subsequent build requires manually clearing out the target folder because for some reason,
