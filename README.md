@@ -31,10 +31,6 @@ cd Nautilus
 
 The generated binaries will be available in `{project.build.directory}/target/output`
 
-> [!IMPORTANT]
-> Note that each subsequent build requires manually clearing out the target folder because for some reason,
-> generated binary stays in read-only mode and maven fails to replace or remove the read-only binary.
-
 - The build uses `jpackage` to generate native app images
 - Output format depends on the target OS
 - A minimal runtime is generated using `jlink` which is then packaged into the target build
