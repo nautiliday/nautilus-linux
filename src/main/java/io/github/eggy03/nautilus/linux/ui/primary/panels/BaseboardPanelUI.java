@@ -151,7 +151,7 @@ public class BaseboardPanelUI extends JPanel {
         panel.add(typeLabel, "cell 0 7,alignx leading");
 
         panel.add(typeTextField, "cell 1 7,growx");
-        panel.add(featureTextArea, "cell 0 8 2 1,grow");
+        panel.add(new JScrollPane(featureTextArea), "cell 0 8 2 1,grow");
 
         manufacturerTextField.setEditable(false);
         nameTextField.setEditable(false);
