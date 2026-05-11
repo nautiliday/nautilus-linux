@@ -6,6 +6,7 @@ package io.github.eggy03.nautilus.linux.ui.primary.panels;
 
 import io.github.eggy03.nautilus.linux.worker.DMIPhysicalMemoryWorker;
 import net.miginfocom.swing.MigLayout;
+import org.jspecify.annotations.NonNull;
 
 import javax.swing.JComboBox;
 import javax.swing.JLabel;
@@ -14,118 +15,117 @@ import javax.swing.JScrollPane;
 import javax.swing.JTextField;
 import javax.swing.border.BevelBorder;
 import javax.swing.border.TitledBorder;
-import java.awt.GridLayout;
 import java.util.List;
 
 @SuppressWarnings("java:S1192")
 public class PhysicalMemoryPanelUI extends JPanel {
 
     // handles
-    private final JLabel memoryModuleNumberLabel = new JLabel("Memory #");
-    private final JComboBox<String> memoryLocatorComboBox = new JComboBox<>();
+    private final @NonNull JLabel memoryModuleNumberLabel = new JLabel("Memory #");
+    private final @NonNull JComboBox<String> memoryLocatorComboBox = new JComboBox<>();
 
-    private final JLabel setLabel = new JLabel("Set");
-    private final JTextField setTextField = new JTextField();
+    private final @NonNull JLabel setLabel = new JLabel("Set");
+    private final @NonNull JTextField setTextField = new JTextField();
 
-    private final JLabel assetTagLabel = new JLabel("Asset Tag");
-    private final JTextField assetTagTextField = new JTextField();
+    private final @NonNull JLabel assetTagLabel = new JLabel("Asset Tag");
+    private final @NonNull JTextField assetTagTextField = new JTextField();
 
-    private final JLabel serialNumberLabel = new JLabel("Serial Number");
-    private final JTextField serialNumberTextField = new JTextField();
+    private final @NonNull JLabel serialNumberLabel = new JLabel("Serial Number");
+    private final @NonNull JTextField serialNumberTextField = new JTextField();
 
-    private final JLabel partNumberLabel = new JLabel("Part Number");
-    private final JTextField partNumberTextField = new JTextField();
+    private final @NonNull JLabel partNumberLabel = new JLabel("Part Number");
+    private final @NonNull JTextField partNumberTextField = new JTextField();
 
-    private final JLabel firmwareVersionLabel = new JLabel("Firmware Version");
-    private final JTextField firmwareVersionTextField = new JTextField();
+    private final @NonNull JLabel firmwareVersionLabel = new JLabel("Firmware Version");
+    private final @NonNull JTextField firmwareVersionTextField = new JTextField();
 
     // characteristics
-    private final JLabel locatorLabel = new JLabel("Locator");
-    private final JTextField locatorTextField = new JTextField();
+    private final @NonNull JLabel locatorLabel = new JLabel("Locator");
+    private final @NonNull JTextField locatorTextField = new JTextField();
 
-    private final JLabel bankLocatorLabel = new JLabel("Bank Locator");
-    private final JTextField bankLocatorTextField = new JTextField();
+    private final @NonNull JLabel bankLocatorLabel = new JLabel("Bank Locator");
+    private final @NonNull JTextField bankLocatorTextField = new JTextField();
 
-    private final JLabel formFactorLabel = new JLabel("Form Factor");
-    private final JTextField formFactorTextField = new JTextField();
+    private final @NonNull JLabel formFactorLabel = new JLabel("Form Factor");
+    private final @NonNull JTextField formFactorTextField = new JTextField();
 
-    private final JLabel typeLabel = new JLabel("Type");
-    private final JTextField typeTextField = new JTextField();
+    private final @NonNull JLabel typeLabel = new JLabel("Type");
+    private final @NonNull JTextField typeTextField = new JTextField();
 
-    private final JLabel typeDetailLabel = new JLabel("Type Detail");
-    private final JTextField typeDetailTextField = new JTextField();
+    private final @NonNull JLabel typeDetailLabel = new JLabel("Type Detail");
+    private final @NonNull JTextField typeDetailTextField = new JTextField();
 
-    private final JLabel rankLabel = new JLabel("Rank");
-    private final JTextField rankLabelTextField = new JTextField();
+    private final @NonNull JLabel rankLabel = new JLabel("Rank");
+    private final @NonNull JTextField rankLabelTextField = new JTextField();
 
     // size
-    private final JLabel sizeLabel = new JLabel("Size");
-    private final JTextField sizeTextField = new JTextField();
+    private final @NonNull JLabel sizeLabel = new JLabel("Size");
+    private final @NonNull JTextField sizeTextField = new JTextField();
 
-    private final JLabel dataWidthLabel = new JLabel("Data Width");
-    private final JTextField dataWidthTextField = new JTextField();
+    private final @NonNull JLabel dataWidthLabel = new JLabel("Data Width");
+    private final @NonNull JTextField dataWidthTextField = new JTextField();
 
-    private final JLabel totalWidthLabel = new JLabel("Total Width");
-    private final JTextField totalWidthTextField = new JTextField();
+    private final @NonNull JLabel totalWidthLabel = new JLabel("Total Width");
+    private final @NonNull JTextField totalWidthTextField = new JTextField();
 
-    private final JLabel volatileSizeLabel = new JLabel("Volatile Size");
-    private final JTextField volatileSizeTextField = new JTextField();
+    private final @NonNull JLabel volatileSizeLabel = new JLabel("Volatile Size");
+    private final @NonNull JTextField volatileSizeTextField = new JTextField();
 
-    private final JLabel nonVolatileSizeLabel = new JLabel("Non-Volatile Size");
-    private final JTextField nonVolatileSizeTextField = new JTextField();
+    private final @NonNull JLabel nonVolatileSizeLabel = new JLabel("Non-Volatile Size");
+    private final @NonNull JTextField nonVolatileSizeTextField = new JTextField();
 
-    private final JLabel cacheSizeLabel = new JLabel("Cache Size");
-    private final JTextField cacheSizeTextField = new JTextField();
+    private final @NonNull JLabel cacheSizeLabel = new JLabel("Cache Size");
+    private final @NonNull JTextField cacheSizeTextField = new JTextField();
 
-    private final JLabel logicalSizeLabel = new JLabel("Logical Size");
-    private final JTextField logicalSizeTextField = new JTextField();
+    private final @NonNull JLabel logicalSizeLabel = new JLabel("Logical Size");
+    private final @NonNull JTextField logicalSizeTextField = new JTextField();
 
     // speed and voltage
-    private final JLabel factorySpeedLabel = new JLabel("Factory Speed");
-    private final JTextField factorySpeedTextField = new JTextField();
+    private final @NonNull JLabel factorySpeedLabel = new JLabel("Factory Speed");
+    private final @NonNull JTextField factorySpeedTextField = new JTextField();
 
-    private final JLabel configuredSpeedLabel = new JLabel("Configured Speed");
-    private final JTextField configuredSpeedTextField = new JTextField();
+    private final @NonNull JLabel configuredSpeedLabel = new JLabel("Configured Speed");
+    private final @NonNull JTextField configuredSpeedTextField = new JTextField();
 
-    private final JLabel minimumVoltageLabel = new JLabel("Minimum Voltage");
-    private final JTextField minimumVoltageTextField = new JTextField();
+    private final @NonNull JLabel minimumVoltageLabel = new JLabel("Minimum Voltage");
+    private final @NonNull JTextField minimumVoltageTextField = new JTextField();
 
-    private final JLabel maximumVoltageLabel = new JLabel("Maximum Voltage");
-    private final JTextField maximumVoltageTextField = new JTextField();
+    private final @NonNull JLabel maximumVoltageLabel = new JLabel("Maximum Voltage");
+    private final @NonNull JTextField maximumVoltageTextField = new JTextField();
 
-    private final JLabel configuredVoltageLabel = new JLabel("Configured Voltage");
-    private final JTextField configuredVoltageTextField = new JTextField();
+    private final @NonNull JLabel configuredVoltageLabel = new JLabel("Configured Voltage");
+    private final @NonNull JTextField configuredVoltageTextField = new JTextField();
 
     // manufacturer and technology
-    private final JLabel manufacturerLabel = new JLabel("Manufacturer");
-    private final JTextField manufacturerTextField = new JTextField();
+    private final @NonNull JLabel manufacturerLabel = new JLabel("Manufacturer");
+    private final @NonNull JTextField manufacturerTextField = new JTextField();
 
-    private final JLabel moduleManufacturerIdLabel = new JLabel("Module Manufacturer ID");
-    private final JTextField moduleManufacturerIdTextField = new JTextField();
+    private final @NonNull JLabel moduleManufacturerIdLabel = new JLabel("Module Manufacturer ID");
+    private final @NonNull JTextField moduleManufacturerIdTextField = new JTextField();
 
-    private final JLabel moduleProductIdLabel = new JLabel("Module Product ID");
-    private final JTextField moduleProductIdTextField = new JTextField();
+    private final @NonNull JLabel moduleProductIdLabel = new JLabel("Module Product ID");
+    private final @NonNull JTextField moduleProductIdTextField = new JTextField();
 
-    private final JLabel mscManufacturerIdLabel = new JLabel("MSC Manufacturer ID");
-    private final JTextField mscManufacturerIdTextField = new JTextField();
+    private final @NonNull JLabel mscManufacturerIdLabel = new JLabel("MSC Manufacturer ID");
+    private final @NonNull JTextField mscManufacturerIdTextField = new JTextField();
 
-    private final JLabel mscProductIdLabel = new JLabel("MSC Product ID");
-    private final JTextField mscProductIdTextField = new JTextField();
+    private final @NonNull JLabel mscProductIdLabel = new JLabel("MSC Product ID");
+    private final @NonNull JTextField mscProductIdTextField = new JTextField();
 
-    private final JLabel memoryTechnologyLabel = new JLabel("Memory Technology");
-    private final JTextField memoryTechnologyTextField = new JTextField();
+    private final @NonNull JLabel memoryTechnologyLabel = new JLabel("Memory Technology");
+    private final @NonNull JTextField memoryTechnologyTextField = new JTextField();
 
-    private final JLabel memoryOperatingModeCapabilityLabel = new JLabel("Memory Operating Mode Capability");
-    private final JTextField memoryOperatingModeCapabilityTextField = new JTextField();
+    private final @NonNull JLabel memoryOperatingModeCapabilityLabel = new JLabel("Memory Operating Mode Capability");
+    private final @NonNull JTextField memoryOperatingModeCapabilityTextField = new JTextField();
 
     // extra
-    private final JLabel arrayHandleLabel = new JLabel("Array Handle");
-    private final JTextField arrayHandleTextField = new JTextField();
+    private final @NonNull JLabel arrayHandleLabel = new JLabel("Array Handle");
+    private final @NonNull JTextField arrayHandleTextField = new JTextField();
 
-    private final JLabel errorHandleLabel = new JLabel("Error Handle");
-    private final JTextField errorHandleTextField = new JTextField();
+    private final @NonNull JLabel errorHandleLabel = new JLabel("Error Handle");
+    private final @NonNull JTextField errorHandleTextField = new JTextField();
 
-
+    @NonNull
     public PhysicalMemoryPanelUI initUI() {
 
         setLayout(new MigLayout("insets 0", "[grow][grow][grow]", "[grow][grow]"));
@@ -134,6 +134,7 @@ public class PhysicalMemoryPanelUI extends JPanel {
         return this;
     }
 
+    @NonNull
     public PhysicalMemoryPanelUI initComponents() {
 
         add(new JScrollPane(createHandlePanel()), "cell 0 0, grow");
@@ -146,6 +147,7 @@ public class PhysicalMemoryPanelUI extends JPanel {
         return this;
     }
 
+    @NonNull
     private JPanel createHandlePanel() {
 
         JPanel panel = new JPanel();
@@ -179,6 +181,7 @@ public class PhysicalMemoryPanelUI extends JPanel {
         return panel;
     }
 
+    @NonNull
     private JPanel createCharacteristicsPanel() {
 
         JPanel panel = new JPanel();
@@ -214,6 +217,7 @@ public class PhysicalMemoryPanelUI extends JPanel {
 
     }
 
+    @NonNull
     private JPanel createSizePanel() {
 
         JPanel panel = new JPanel();
@@ -253,6 +257,7 @@ public class PhysicalMemoryPanelUI extends JPanel {
 
     }
 
+    @NonNull
     private JPanel createSpeedAndVoltagePanel() {
 
         JPanel panel = new JPanel();
@@ -284,6 +289,7 @@ public class PhysicalMemoryPanelUI extends JPanel {
 
     }
 
+    @NonNull
     private JPanel createManufacturerPanel() {
 
         JPanel panel = new JPanel();
@@ -325,6 +331,7 @@ public class PhysicalMemoryPanelUI extends JPanel {
         return panel;
     }
 
+    @NonNull
     private JPanel createExtraPanel() {
 
         JPanel panel = new JPanel();
@@ -340,7 +347,7 @@ public class PhysicalMemoryPanelUI extends JPanel {
         return panel;
     }
 
-
+    @NonNull
     public PhysicalMemoryPanelUI setWorkers() {
 
         List<JTextField> textFields = List.of(setTextField, assetTagTextField, serialNumberTextField,

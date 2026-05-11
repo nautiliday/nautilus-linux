@@ -10,6 +10,7 @@ import io.github.eggy03.dmidecode.service.board.DMIBaseboardService;
 import io.github.eggy03.nautilus.linux.constant.TerminalConstant;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.jspecify.annotations.NonNull;
 
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
@@ -24,11 +25,11 @@ import java.util.stream.Collectors;
 @Slf4j
 public class DMIBaseboardWorker extends SwingWorker<DMIBaseboard, Void> {
 
-    private final List<JTextField> baseboardFields;
-    private final JTextArea featureTextArea;
+    private final @NonNull List<JTextField> baseboardFields;
+    private final @NonNull JTextArea featureTextArea;
 
     @Override
-    protected DMIBaseboard doInBackground() throws Exception {
+    protected @NonNull DMIBaseboard doInBackground() throws Exception {
         Optional<DMIBaseboard> optionalDMIBaseboard = new DMIBaseboardService().get(TerminalConstant.TIMEOUT_SIXTY_SECONDS);
         if (optionalDMIBaseboard.isEmpty())
             log.info("No DMIBaseboard entry found");
@@ -52,7 +53,7 @@ public class DMIBaseboardWorker extends SwingWorker<DMIBaseboard, Void> {
         }
     }
 
-    private void populateFields(DMIBaseboard dmiBaseboard) {
+    private void populateFields(@NonNull DMIBaseboard dmiBaseboard) {
 
         baseboardFields.get(0).setText(dmiBaseboard.manufacturer());
         baseboardFields.get(1).setText(dmiBaseboard.productName());

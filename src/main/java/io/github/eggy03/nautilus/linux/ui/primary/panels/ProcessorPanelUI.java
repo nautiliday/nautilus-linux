@@ -9,6 +9,7 @@ import io.github.eggy03.nautilus.linux.worker.DMICacheWorker;
 import io.github.eggy03.nautilus.linux.worker.DMIProcessorWorker;
 import io.github.eggy03.nautilus.linux.worker.SystemUUIDWorker;
 import net.miginfocom.swing.MigLayout;
+import org.jspecify.annotations.NonNull;
 
 import javax.swing.JButton;
 import javax.swing.JComboBox;
@@ -28,67 +29,68 @@ import java.util.List;
 public class ProcessorPanelUI extends JPanel {
 
     // hardware id
-    private final JTextField systemIdTextField = new JTextField();
+    private final @NonNull JTextField systemIdTextField = new JTextField();
 
-    private final JButton copySystemIdButton = new JButton();
+    private final @NonNull JButton copySystemIdButton = new JButton();
 
     // cpu primary
-    private final JLabel cpuIdLabel = new JLabel("ID");
-    private final JComboBox<String> cpuIdComboBox = new JComboBox<>();
+    private final @NonNull JLabel cpuIdLabel = new JLabel("ID");
+    private final @NonNull JComboBox<String> cpuIdComboBox = new JComboBox<>();
 
-    private final JLabel cpuVersionLabel = new JLabel("Version");
-    private final JTextField cpuVersionTextField = new JTextField();
+    private final @NonNull JLabel cpuVersionLabel = new JLabel("Version");
+    private final @NonNull JTextField cpuVersionTextField = new JTextField();
 
-    private final JLabel coreLabel = new JLabel("Cores");
-    private final JTextField coreTextField = new JTextField();
+    private final @NonNull JLabel coreLabel = new JLabel("Cores");
+    private final @NonNull JTextField coreTextField = new JTextField();
 
-    private final JLabel threadLabel = new JLabel("Threads");
-    private final JTextField threadTextField = new JTextField();
+    private final @NonNull JLabel threadLabel = new JLabel("Threads");
+    private final @NonNull JTextField threadTextField = new JTextField();
 
-    private final JLabel currentClockLabel = new JLabel("Current Clock");
-    private final JTextField currentClockTextField = new JTextField();
+    private final @NonNull JLabel currentClockLabel = new JLabel("Current Clock");
+    private final @NonNull JTextField currentClockTextField = new JTextField();
 
-    private final JLabel cpuVoltageLabel = new JLabel("Voltage");
-    private final JTextField cpuVoltageTextField = new JTextField();
+    private final @NonNull JLabel cpuVoltageLabel = new JLabel("Voltage");
+    private final @NonNull JTextField cpuVoltageTextField = new JTextField();
 
-    private final JLabel socketLabel = new JLabel("Socket");
-    private final JTextField socketTextField = new JTextField();
+    private final @NonNull JLabel socketLabel = new JLabel("Socket");
+    private final @NonNull JTextField socketTextField = new JTextField();
 
-    private final JLabel baseClockLabel = new JLabel("Base Clock");
-    private final JTextField baseClockTextField = new JTextField();
+    private final @NonNull JLabel baseClockLabel = new JLabel("Base Clock");
+    private final @NonNull JTextField baseClockTextField = new JTextField();
 
     // cpu secondary
-    private final JLabel cpuSignatureLabel = new JLabel("Signature");
-    private final JTextField cpuSignatureTextField = new JTextField();
+    private final @NonNull JLabel cpuSignatureLabel = new JLabel("Signature");
+    private final @NonNull JTextField cpuSignatureTextField = new JTextField();
 
-    private final JLabel familyLabel = new JLabel("Family");
-    private final JTextField familyTextField = new JTextField();
+    private final @NonNull JLabel familyLabel = new JLabel("Family");
+    private final @NonNull JTextField familyTextField = new JTextField();
 
-    private final JLabel cpuManufacturerLabel = new JLabel("Manufacturer");
-    private final JTextField cpuManufacturerTextField = new JTextField();
+    private final @NonNull JLabel cpuManufacturerLabel = new JLabel("Manufacturer");
+    private final @NonNull JTextField cpuManufacturerTextField = new JTextField();
 
-    private final JLabel serialNumberLabel = new JLabel("Serial");
-    private final JTextField cpuSerialTextField = new JTextField();
+    private final @NonNull JLabel serialNumberLabel = new JLabel("Serial");
+    private final @NonNull JTextField cpuSerialTextField = new JTextField();
 
-    private final JLabel assetTagLabel = new JLabel("Asset Tag");
-    private final JTextField assetTagTextField = new JTextField();
+    private final @NonNull JLabel assetTagLabel = new JLabel("Asset Tag");
+    private final @NonNull JTextField assetTagTextField = new JTextField();
 
-    private final JLabel partNumberLabel = new JLabel("Part Number");
-    private final JTextField partNumberTextField = new JTextField();
+    private final @NonNull JLabel partNumberLabel = new JLabel("Part Number");
+    private final @NonNull JTextField partNumberTextField = new JTextField();
 
-    private final JLabel enabledCoresLabel = new JLabel("Enabled Cores");
-    private final JTextField enabledCoresTextField = new JTextField();
+    private final @NonNull JLabel enabledCoresLabel = new JLabel("Enabled Cores");
+    private final @NonNull JTextField enabledCoresTextField = new JTextField();
 
-    private final JLabel upgradeLabel = new JLabel("Upgrade");
-    private final JTextField upgradeTextField = new JTextField();
+    private final @NonNull JLabel upgradeLabel = new JLabel("Upgrade");
+    private final @NonNull JTextField upgradeTextField = new JTextField();
 
-    private final JLabel cpuStatusLabel = new JLabel("Status");
-    private final JTextField cpuStatusTextField = new JTextField();
+    private final @NonNull JLabel cpuStatusLabel = new JLabel("Status");
+    private final @NonNull JTextField cpuStatusTextField = new JTextField();
 
     // text areas
-    private final JTextArea cpuCharsAndFlagsTextArea = new JTextArea();
-    private final JTextArea cacheTextArea = new JTextArea();
+    private final @NonNull JTextArea cpuCharsAndFlagsTextArea = new JTextArea();
+    private final @NonNull JTextArea cacheTextArea = new JTextArea();
 
+    @NonNull
     public ProcessorPanelUI initUI() {
 
         setBorder(new TitledBorder(
@@ -109,6 +111,7 @@ public class ProcessorPanelUI extends JPanel {
         return this;
     }
 
+    @NonNull
     public ProcessorPanelUI initComponents() {
 
         add(createHardwareIdPanel(), "cell 0 0 2 1,grow");
@@ -120,6 +123,7 @@ public class ProcessorPanelUI extends JPanel {
         return this;
     }
 
+    @NonNull
     private JPanel createHardwareIdPanel() {
 
         JPanel panel = new JPanel();
@@ -161,6 +165,7 @@ public class ProcessorPanelUI extends JPanel {
         return panel;
     }
 
+    @NonNull
     private JPanel createPrimaryCpuPanel() {
 
         JPanel panel = new JPanel();
@@ -215,6 +220,7 @@ public class ProcessorPanelUI extends JPanel {
         return panel;
     }
 
+    @NonNull
     private JPanel createSecondaryCpuPanel() {
 
         JPanel panel = new JPanel();
@@ -274,6 +280,7 @@ public class ProcessorPanelUI extends JPanel {
         return panel;
     }
 
+    @NonNull
     private JPanel createCpuFlagPanel() {
 
         JPanel panel = new JPanel();
@@ -298,6 +305,7 @@ public class ProcessorPanelUI extends JPanel {
         return panel;
     }
 
+    @NonNull
     private JPanel createCpuCachePanel() {
 
         JPanel panel = new JPanel();
@@ -322,6 +330,7 @@ public class ProcessorPanelUI extends JPanel {
         return panel;
     }
 
+    @NonNull
     public ProcessorPanelUI setWorkers() {
 
         List<JTextField> textFields = List.of(

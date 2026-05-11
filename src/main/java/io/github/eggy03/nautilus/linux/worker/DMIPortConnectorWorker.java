@@ -9,6 +9,7 @@ import io.github.eggy03.dmidecode.service.board.DMIPortConnectorInformationServi
 import io.github.eggy03.nautilus.linux.constant.TerminalConstant;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.jspecify.annotations.NonNull;
 
 import javax.swing.JComboBox;
 import javax.swing.JTextField;
@@ -24,11 +25,11 @@ import java.util.stream.IntStream;
 @Slf4j
 public class DMIPortConnectorWorker extends SwingWorker<Map<Integer, DMIPortConnectorInformation>, Void> {
 
-    private final JComboBox<Integer> portNumberComboBox;
-    private final List<JTextField> portFields;
+    private final @NonNull JComboBox<Integer> portNumberComboBox;
+    private final @NonNull List<JTextField> portFields;
 
     @Override
-    protected Map<Integer, DMIPortConnectorInformation> doInBackground() throws Exception {
+    protected @NonNull Map<Integer, DMIPortConnectorInformation> doInBackground() throws Exception {
         List<DMIPortConnectorInformation> portList = new DMIPortConnectorInformationService()
                 .get(TerminalConstant.TIMEOUT_SIXTY_SECONDS)
                 .stream()
@@ -64,7 +65,7 @@ public class DMIPortConnectorWorker extends SwingWorker<Map<Integer, DMIPortConn
         }
     }
 
-    private void populateFields(Map<Integer, DMIPortConnectorInformation> portMap) {
+    private void populateFields(@NonNull Map<Integer, DMIPortConnectorInformation> portMap) {
 
         Integer index = (Integer) portNumberComboBox.getSelectedItem();
 

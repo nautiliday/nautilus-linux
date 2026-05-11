@@ -9,6 +9,7 @@ import io.github.eggy03.nautilus.linux.ui.primary.panels.BaseboardPanelUI;
 import io.github.eggy03.nautilus.linux.ui.primary.panels.PhysicalMemoryPanelUI;
 import io.github.eggy03.nautilus.linux.ui.primary.panels.ProcessorPanelUI;
 import io.github.eggy03.nautilus.linux.ui.secondary.AboutUI;
+import org.jspecify.annotations.NonNull;
 
 import javax.swing.JFrame;
 import javax.swing.JMenu;
@@ -22,6 +23,7 @@ import java.awt.Toolkit;
 
 public class MainUI extends JFrame {
 
+    @NonNull
     public MainUI initUI() {
 
         setTitle("Nautilus");
@@ -34,6 +36,7 @@ public class MainUI extends JFrame {
         return this;
     }
 
+    @NonNull
     public MainUI initComponents() {
 
         add(createMenu(), BorderLayout.NORTH);
@@ -42,6 +45,7 @@ public class MainUI extends JFrame {
         return this;
     }
 
+    @NonNull
     private JMenuBar createMenu() {
         JMenuBar menuBar = new JMenuBar();
 
@@ -58,6 +62,7 @@ public class MainUI extends JFrame {
 
     }
 
+    @NonNull
     private JTabbedPane createTabbedPane() {
         JTabbedPane tabbedPane = new JTabbedPane(SwingConstants.TOP);
 
