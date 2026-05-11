@@ -9,6 +9,7 @@ import io.github.eggy03.dmidecode.service.memory.DMIMemoryDeviceService;
 import io.github.eggy03.nautilus.linux.constant.TerminalConstant;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.jspecify.annotations.NonNull;
 
 import javax.swing.JComboBox;
 import javax.swing.JTextField;
@@ -23,11 +24,11 @@ import java.util.stream.Collectors;
 @Slf4j
 public class DMIPhysicalMemoryWorker extends SwingWorker<Map<String, DMIMemoryDevice>, Void> {
 
-    private final JComboBox<String> memorySlotComboBox;
-    private final List<JTextField> memoryFields;
+    private final @NonNull JComboBox<String> memorySlotComboBox;
+    private final @NonNull List<JTextField> memoryFields;
 
     @Override
-    protected Map<String, DMIMemoryDevice> doInBackground() throws Exception {
+    protected @NonNull Map<String, DMIMemoryDevice> doInBackground() throws Exception {
         List<DMIMemoryDevice> dmiMemoryDeviceList = new DMIMemoryDeviceService().get(TerminalConstant.TIMEOUT_SIXTY_SECONDS);
         log.info("Found {} DMIMemoryDevice entry(s)", dmiMemoryDeviceList.size());
 
@@ -61,7 +62,7 @@ public class DMIPhysicalMemoryWorker extends SwingWorker<Map<String, DMIMemoryDe
 
     }
 
-    private void populateFieldsBasedOnMemory(Map<String, DMIMemoryDevice> memoryDeviceMap) {
+    private void populateFieldsBasedOnMemory(@NonNull Map<String, DMIMemoryDevice> memoryDeviceMap) {
 
         String locator = String.valueOf(memorySlotComboBox.getSelectedItem());
 

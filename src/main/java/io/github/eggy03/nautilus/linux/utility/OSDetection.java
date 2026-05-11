@@ -6,6 +6,7 @@ package io.github.eggy03.nautilus.linux.utility;
 
 import lombok.experimental.UtilityClass;
 import org.apache.commons.lang3.SystemUtils;
+import org.jspecify.annotations.Nullable;
 
 @UtilityClass
 public class OSDetection {
@@ -14,6 +15,7 @@ public class OSDetection {
         return SystemUtils.IS_OS_LINUX;
     }
 
+    @Nullable
     public static String getCurrentOS() {
         return System.getProperty("os.name");
     }

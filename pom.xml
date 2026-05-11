@@ -38,7 +38,7 @@
     <exec.maven.plugin.version>3.6.3</exec.maven.plugin.version>
 
     <!-- Extras -->
-    <app.main.class>io.github.eggy03.nautilus.windows.Start</app.main.class>
+    <app.main.class>io.github.eggy03.nautilus.linux.Start</app.main.class>
     <app.fatjar.name>${project.build.finalName}-jar-with-dependencies.jar</app.fatjar.name>
     <app.fatjar.directory>${project.build.directory}/fatjar</app.fatjar.directory>
 

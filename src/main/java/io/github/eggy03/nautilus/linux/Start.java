@@ -35,7 +35,7 @@ public class Start {
 
     private static void launchUIBasedOnOS() {
         if (OSDetection.isLinux()) {
-            new MainUI().setVisible(true);
+            new MainUI().initUI().initComponents().setVisible(true);
         } else {
             new ExceptionUI("Unsupported OS", OSDetection.getCurrentOS() + " is not supported");
         }

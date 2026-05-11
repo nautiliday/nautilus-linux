@@ -6,7 +6,7 @@ package io.github.eggy03.nautilus.linux.ui.secondary;
 
 import com.formdev.flatlaf.extras.FlatSVGIcon;
 import net.miginfocom.swing.MigLayout;
-import org.jetbrains.annotations.Nullable;
+import org.jspecify.annotations.NonNull;
 
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -22,7 +22,7 @@ public class InformationUI extends JFrame {
     /**
      * Create the frame.
      */
-    public InformationUI(@Nullable String infoHeading, @Nullable String infoText) {
+    public InformationUI(@NonNull String infoHeading, @NonNull String infoText) {
 
         setTitle("Info");
         setResizable(false);

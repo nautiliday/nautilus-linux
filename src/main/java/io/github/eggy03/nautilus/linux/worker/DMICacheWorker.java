@@ -9,6 +9,7 @@ import io.github.eggy03.dmidecode.service.processor.DMICacheService;
 import io.github.eggy03.nautilus.linux.constant.TerminalConstant;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.jspecify.annotations.NonNull;
 
 import javax.swing.JTextArea;
 import javax.swing.SwingWorker;
@@ -19,10 +20,10 @@ import java.util.concurrent.ExecutionException;
 @Slf4j
 public class DMICacheWorker extends SwingWorker<List<DMICache>, Void> {
 
-    private final JTextArea cacheTextArea;
+    private final @NonNull JTextArea cacheTextArea;
 
     @Override
-    protected List<DMICache> doInBackground() {
+    protected @NonNull List<DMICache> doInBackground() {
         List<DMICache> dmiCacheList = new DMICacheService().get(TerminalConstant.TIMEOUT_SIXTY_SECONDS);
         log.info("Found {} DMICache entry(s)", dmiCacheList.size());
 

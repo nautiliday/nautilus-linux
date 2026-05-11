@@ -9,6 +9,7 @@ import io.github.eggy03.dmidecode.service.system.DMISystemService;
 import io.github.eggy03.nautilus.linux.constant.TerminalConstant;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.jspecify.annotations.NonNull;
 
 import javax.swing.JTextField;
 import javax.swing.SwingWorker;
@@ -19,10 +20,10 @@ import java.util.concurrent.ExecutionException;
 @Slf4j
 public class SystemUUIDWorker extends SwingWorker<Optional<DMISystem>, Void> {
 
-    private final JTextField uuidField;
+    private final @NonNull JTextField uuidField;
 
     @Override
-    protected Optional<DMISystem> doInBackground() throws Exception {
+    protected @NonNull Optional<DMISystem> doInBackground() throws Exception {
         return new DMISystemService().get(TerminalConstant.TIMEOUT_SIXTY_SECONDS);
     }
 

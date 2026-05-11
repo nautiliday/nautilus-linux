@@ -4,6 +4,8 @@
  */
 package io.github.eggy03.nautilus.linux.ui.secondary;
 
+import org.jspecify.annotations.NonNull;
+
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
@@ -18,12 +20,12 @@ import java.awt.datatransfer.StringSelection;
 
 public class ExceptionUI extends JFrame {
 
-    public ExceptionUI(String errorName, String errorMessage) {
+    public ExceptionUI(@NonNull String errorName, @NonNull String errorMessage) {
         super("Crash Report Engine");
         initialize(errorName, errorMessage);
     }
 
-    private void initialize(String errorName, String errorMessage) {
+    private void initialize(@NonNull String errorName, @NonNull String errorMessage) {
 
         setIconImage(Toolkit.getDefaultToolkit().getImage(ExceptionUI.class.getResource("/icons/icon_main.png")));
         setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
@@ -43,8 +45,8 @@ public class ExceptionUI extends JFrame {
 
         JButton copyLog = new JButton("Copy Log");
         copyLog.addActionListener(e -> {
-            StringSelection strse = new StringSelection(exceptionArea.getText());
-            Toolkit.getDefaultToolkit().getSystemClipboard().setContents(strse, null);
+            StringSelection stringSelection = new StringSelection(exceptionArea.getText());
+            Toolkit.getDefaultToolkit().getSystemClipboard().setContents(stringSelection, null);
         });
 
         contentPane.add(new JScrollPane(exceptionArea), BorderLayout.CENTER);

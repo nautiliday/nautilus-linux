@@ -9,6 +9,7 @@ import io.github.eggy03.dmidecode.service.processor.DMIProcessorService;
 import io.github.eggy03.nautilus.linux.constant.TerminalConstant;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.jspecify.annotations.NonNull;
 
 import javax.swing.JComboBox;
 import javax.swing.JTextArea;
@@ -25,12 +26,12 @@ import java.util.stream.Collectors;
 @Slf4j
 public class DMIProcessorWorker extends SwingWorker<Map<String, DMIProcessor>, Void> {
 
-    private final JComboBox<String> cpuIdComboBox;
-    private final List<JTextField> cpuFields;
-    private final JTextArea cpuCharsAndFlagsTextArea;
+    private final @NonNull JComboBox<String> cpuIdComboBox;
+    private final @NonNull List<JTextField> cpuFields;
+    private final @NonNull JTextArea cpuCharsAndFlagsTextArea;
 
     @Override
-    protected Map<String, DMIProcessor> doInBackground() {
+    protected @NonNull Map<String, DMIProcessor> doInBackground() {
         List<DMIProcessor> cpuList = new DMIProcessorService().get(TerminalConstant.TIMEOUT_SIXTY_SECONDS);
         log.info("Found {} DMIProcessor entry(s)", cpuList.size());
 
@@ -63,7 +64,7 @@ public class DMIProcessorWorker extends SwingWorker<Map<String, DMIProcessor>, V
 
     }
 
-    private void populateFieldsBasedOnCurrentCpuId(Map<String, DMIProcessor> cpuMap) {
+    private void populateFieldsBasedOnCurrentCpuId(@NonNull Map<String, DMIProcessor> cpuMap) {
         String index = String.valueOf(cpuIdComboBox.getSelectedItem());
 
         DMIProcessor cpu = cpuMap.get(index);

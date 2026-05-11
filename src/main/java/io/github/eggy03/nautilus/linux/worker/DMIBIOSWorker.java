@@ -9,6 +9,7 @@ import io.github.eggy03.dmidecode.service.board.DMIBIOSService;
 import io.github.eggy03.nautilus.linux.constant.TerminalConstant;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.jspecify.annotations.NonNull;
 
 import javax.swing.JComboBox;
 import javax.swing.JTextArea;
@@ -25,12 +26,12 @@ import java.util.stream.IntStream;
 @Slf4j
 public class DMIBIOSWorker extends SwingWorker<Map<Integer, DMIBIOS>, Void> {
 
-    private final JComboBox<Integer> biosNumberComboBox;
-    private final List<JTextField> biosFields;
-    private final JTextArea biosCharacteristicsTextArea;
+    private final @NonNull JComboBox<Integer> biosNumberComboBox;
+    private final @NonNull List<JTextField> biosFields;
+    private final @NonNull JTextArea biosCharacteristicsTextArea;
 
     @Override
-    protected Map<Integer, DMIBIOS> doInBackground() throws Exception {
+    protected @NonNull Map<Integer, DMIBIOS> doInBackground() throws Exception {
         List<DMIBIOS> dmibiosList = new DMIBIOSService().get(TerminalConstant.TIMEOUT_SIXTY_SECONDS);
         log.info("Found {} DMIBIOS entry(s)", dmibiosList.size());
 
@@ -61,7 +62,7 @@ public class DMIBIOSWorker extends SwingWorker<Map<Integer, DMIBIOS>, Void> {
         }
     }
 
-    private void populateFields(Map<Integer, DMIBIOS> mapList) {
+    private void populateFields(@NonNull Map<Integer, DMIBIOS> mapList) {
 
         Integer selectedIndex = (Integer) biosNumberComboBox.getSelectedItem();
 

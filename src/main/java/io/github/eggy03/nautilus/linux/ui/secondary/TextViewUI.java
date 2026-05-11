@@ -6,8 +6,7 @@ package io.github.eggy03.nautilus.linux.ui.secondary;
 
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.io.IOUtils;
-import org.jetbrains.annotations.NotNull;
-import org.jetbrains.annotations.Nullable;
+import org.jspecify.annotations.NonNull;
 
 import javax.swing.JEditorPane;
 import javax.swing.JFrame;
@@ -24,11 +23,11 @@ import java.nio.charset.StandardCharsets;
 public class TextViewUI extends JFrame {
 
 
-    public TextViewUI(@Nullable String windowTitle, @Nullable String contents) {
+    public TextViewUI(@NonNull String windowTitle, @NonNull String contents) {
         buildUI(windowTitle, contents);
     }
 
-    public TextViewUI(@Nullable String windowTitle, @NotNull InputStream contents) {
+    public TextViewUI(@NonNull String windowTitle, @NonNull InputStream contents) {
         try {
             String content = IOUtils.toString(contents, StandardCharsets.UTF_8);
             buildUI(windowTitle, content);
@@ -38,7 +37,7 @@ public class TextViewUI extends JFrame {
         }
     }
 
-    private void buildUI(@Nullable String windowTitle, @Nullable String contents) {
+    private void buildUI(@NonNull String windowTitle, @NonNull String contents) {
 
         setTitle(windowTitle);
         setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);

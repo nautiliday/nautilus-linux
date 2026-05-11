@@ -7,6 +7,7 @@ package io.github.eggy03.nautilus.linux.ui.secondary;
 import com.formdev.flatlaf.extras.FlatSVGIcon;
 import io.github.eggy03.nautilus.linux.constant.Version;
 import net.miginfocom.swing.MigLayout;
+import org.jspecify.annotations.NonNull;
 
 import javax.swing.JEditorPane;
 import javax.swing.JFrame;
@@ -30,22 +31,20 @@ import java.util.Objects;
 
 public class AboutUI extends JFrame {
 
+    @NonNull
     private static final String VERSION_AND_AUTHOR =
             "Version: " + Version.SEMVER + Version.SUFFIX
-                    + System.lineSeparator()
-                    + "Build: " + Version.BUILD_DATE
                     + System.lineSeparator()
                     + "Developer: " + Version.DEVELOPER
                     + System.lineSeparator()
                     + "License: " + Version.LICENSE;
 
+    @NonNull
     private static final String ATTRIBUTION = """	
             <b>Open-Source Licenses</b><br>
             This application includes the following third-party open-source libraries and frameworks:
             <ul>
-              <li>cimari</li>
               <li>dmidecode4j</li>
-              <li>Swing Theme Manager</li>
               <li>Apache Commons Lang</li>
               <li>Apache Commons IO</li>
               <li>FlatLaf</li>
@@ -64,11 +63,6 @@ public class AboutUI extends JFrame {
             <b>Icons</b><br>
             This application uses icons from Google Material Design Icons,
             licensed under the Apache License, Version 2.0.<br><br>
-            
-            <b>Security Notice</b><br>
-            This application binary is currently unsigned, and no official pre-built binaries are distributed.
-            Users are strongly encouraged to build the application from source.
-            If you choose to use a pre-built binary, ensure that it originates from a trusted and verified source.
             """;
 
     public AboutUI() {
@@ -89,6 +83,7 @@ public class AboutUI extends JFrame {
         setContentPane(contentPane);
     }
 
+    @NonNull
     private JPanel createVersionPanel() {
 
         JPanel versionPanel = new JPanel();
@@ -107,6 +102,7 @@ public class AboutUI extends JFrame {
         return versionPanel;
     }
 
+    @NonNull
     private JPanel createAttributionPanel() {
 
         JPanel attributionPanel = new JPanel();
@@ -123,6 +119,7 @@ public class AboutUI extends JFrame {
         return attributionPanel;
     }
 
+    @NonNull
     private JMenuBar createMenu() {
 
         JMenuBar menuBar = new JMenuBar();
