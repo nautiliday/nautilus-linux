@@ -63,11 +63,6 @@ public class AboutUI extends JFrame {
             <b>Icons</b><br>
             This application uses icons from Google Material Design Icons,
             licensed under the Apache License, Version 2.0.<br><br>
-            
-            <b>Security Notice</b><br>
-            This application binary is currently unsigned, and no official pre-built binaries are distributed.
-            Users are strongly encouraged to build the application from source.
-            If you choose to use a pre-built binary, ensure that it originates from a trusted and verified source.
             """;
 
     public AboutUI() {
