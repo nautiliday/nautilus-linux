@@ -114,9 +114,9 @@ public class ProcessorPanelUI extends JPanel {
     @NonNull
     public ProcessorPanelUI initComponents() {
 
-        add(createHardwareIdPanel(), "cell 0 0 2 1,grow");
-        add(createPrimaryCpuPanel(), "cell 0 1 2 1,grow");
-        add(createSecondaryCpuPanel(), "cell 0 2 2 1,grow");
+        add(new JScrollPane(createHardwareIdPanel()), "cell 0 0 2 1,grow");
+        add(new JScrollPane(createPrimaryCpuPanel()), "cell 0 1 2 1,grow");
+        add(new JScrollPane(createSecondaryCpuPanel()), "cell 0 2 2 1,grow");
         add(createCpuFlagPanel(), "cell 0 3 1 1,grow");
         add(createCpuCachePanel(), "cell 1 3 1 1,grow");
 
