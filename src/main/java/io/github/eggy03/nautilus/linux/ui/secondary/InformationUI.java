@@ -6,7 +6,7 @@ package io.github.eggy03.nautilus.linux.ui.secondary;
 
 import com.formdev.flatlaf.extras.FlatSVGIcon;
 import net.miginfocom.swing.MigLayout;
-import org.jetbrains.annotations.Nullable;
+import org.jspecify.annotations.Nullable;
 
 import javax.swing.JFrame;
 import javax.swing.JLabel;
