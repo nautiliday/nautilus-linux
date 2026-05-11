@@ -29,7 +29,7 @@ cd Nautilus
 ./mvnw -Pdist package jpackage:jpackage@linux
 ```
 
-The generated binaries will be available in `{project.build.directory}/target/output`
+The generated binaries will be available in `{project.directory}/target/output`
 
 - The build uses `jpackage` to generate native app images
 - Output format depends on the target OS
