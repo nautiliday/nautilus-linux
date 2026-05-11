@@ -46,12 +46,12 @@ jobs:
         shell: pwsh
         run: |
           cd target/output/Nautilus
-          tar -czf ../../../nautilus-${{ github.ref_name }}-linux.tar.gz *
+          tar -czf ../../../nautilus-${{ github.ref_name }}-linux-${{ matrix.arch }}.tar.gz *
           cd ../../..
 
       # ---------- Upload artifacts ----------
       - name: Upload artifact
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v7
         with:
           name: nautilus-${{ matrix.platform }}-${{ matrix.arch }}
           path: |
@@ -70,5 +70,5 @@ jobs:
         with:
           tag_name: ${{ github.ref_name }}
           files: |
-            nautilus-linux-x86_64/nautilus-${{ github.ref_name }}-linux-x86_64.zip
-            nautilus-linux-arm64/nautilus-${{ github.ref_name }}-linux-arm64.zip
+            nautilus-linux-x86_64/nautilus-${{ github.ref_name }}-linux-x86_64.tar.gz
+            nautilus-linux-arm64/nautilus-${{ github.ref_name }}-linux-arm64.tar.gz
