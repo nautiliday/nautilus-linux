@@ -22,7 +22,7 @@ public class PhysicalMemoryPanelUI extends JPanel {
 
     // handles
     private final @NonNull JLabel memoryModuleNumberLabel = new JLabel("Memory #");
-    private final @NonNull JComboBox<String> memoryLocatorComboBox = new JComboBox<>();
+    private final @NonNull JComboBox<Integer> memoryModuleNumberComboBox = new JComboBox<>();
 
     private final @NonNull JLabel setLabel = new JLabel("Set");
     private final @NonNull JTextField setTextField = new JTextField();
@@ -155,7 +155,7 @@ public class PhysicalMemoryPanelUI extends JPanel {
         panel.setLayout(new MigLayout("insets 0", "[][grow]", "[][][][][][]"));
 
         panel.add(memoryModuleNumberLabel, "cell 0 0,alignx leading");
-        panel.add(memoryLocatorComboBox, "cell 1 0,growx");
+        panel.add(memoryModuleNumberComboBox, "cell 1 0,growx");
 
         panel.add(setLabel, "cell 0 1,alignx leading");
         panel.add(setTextField, "cell 1 1,growx");
@@ -361,7 +361,7 @@ public class PhysicalMemoryPanelUI extends JPanel {
                 memoryOperatingModeCapabilityTextField, errorHandleTextField, arrayHandleTextField
         );
 
-        new DMIPhysicalMemoryWorker(memoryLocatorComboBox, textFields).execute();
+        new DMIPhysicalMemoryWorker(memoryModuleNumberComboBox, textFields).execute();
 
         return this;
     }

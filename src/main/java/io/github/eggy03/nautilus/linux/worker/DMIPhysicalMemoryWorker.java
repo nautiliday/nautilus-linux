@@ -16,28 +16,27 @@ import javax.swing.JTextField;
 import javax.swing.SwingWorker;
 import java.util.List;
 import java.util.Map;
-import java.util.Objects;
 import java.util.concurrent.ExecutionException;
 import java.util.stream.Collectors;
+import java.util.stream.IntStream;
 
 @RequiredArgsConstructor
 @Slf4j
-public class DMIPhysicalMemoryWorker extends SwingWorker<Map<String, DMIMemoryDevice>, Void> {
+public class DMIPhysicalMemoryWorker extends SwingWorker<Map<Integer, DMIMemoryDevice>, Void> {
 
-    private final @NonNull JComboBox<String> memorySlotComboBox;
+    private final @NonNull JComboBox<Integer> memorySlotComboBox;
     private final @NonNull List<JTextField> memoryFields;
 
     @Override
-    protected @NonNull Map<String, DMIMemoryDevice> doInBackground() throws Exception {
+    protected @NonNull Map<Integer, DMIMemoryDevice> doInBackground() {
         List<DMIMemoryDevice> dmiMemoryDeviceList = new DMIMemoryDeviceService().get(TerminalConstant.TIMEOUT_SIXTY_SECONDS);
         log.info("Found {} DMIMemoryDevice entry(s)", dmiMemoryDeviceList.size());
 
-        return dmiMemoryDeviceList.stream()
-                .filter(Objects::nonNull)
-                .filter(device -> Objects.nonNull(device.locator()))
+        return IntStream.range(0, dmiMemoryDeviceList.size())
+                .boxed()
                 .collect(Collectors.toUnmodifiableMap(
-                        device -> Objects.requireNonNull(device.locator()),
-                        device -> device
+                        index -> index + 1,
+                        dmiMemoryDeviceList::get
                 ));
     }
 
@@ -45,8 +44,8 @@ public class DMIPhysicalMemoryWorker extends SwingWorker<Map<String, DMIMemoryDe
     protected void done() {
 
         try {
-            Map<String, DMIMemoryDevice> memoryDeviceMap = get();
-            // populate the combo box with memory locator data
+            Map<Integer, DMIMemoryDevice> memoryDeviceMap = get();
+            // populate the combo box with keys
             memoryDeviceMap.keySet().stream().sorted().forEach(memorySlotComboBox::addItem);
             // populate fields for the first entry in the combo box
             populateFieldsBasedOnMemory(memoryDeviceMap);
@@ -62,11 +61,11 @@ public class DMIPhysicalMemoryWorker extends SwingWorker<Map<String, DMIMemoryDe
 
     }
 
-    private void populateFieldsBasedOnMemory(@NonNull Map<String, DMIMemoryDevice> memoryDeviceMap) {
+    private void populateFieldsBasedOnMemory(@NonNull Map<Integer, DMIMemoryDevice> memoryDeviceMap) {
 
-        String locator = String.valueOf(memorySlotComboBox.getSelectedItem());
+        Integer selectedItem = (Integer) memorySlotComboBox.getSelectedItem();
 
-        DMIMemoryDevice memory = memoryDeviceMap.get(locator);
+        DMIMemoryDevice memory = memoryDeviceMap.get(selectedItem);
         if (memory == null) return;
 
         memoryFields.get(0).setText(memory.set());
