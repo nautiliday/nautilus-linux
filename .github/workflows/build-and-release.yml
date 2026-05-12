@@ -36,6 +36,23 @@ jobs:
       - name: Build and package
         run: mvn -Pdist package jpackage:jpackage@linux
 
+      - name: Add launcher script
+        shell: bash
+        run: |
+          cat > target/output/Nautilus/launch-nautilus.sh <<'EOF'
+          #!/bin/bash
+          
+          SCRIPT_DIR="$(cd -- "$(dirname -- "$0")" && pwd)"
+          
+          exec pkexec env \
+              DISPLAY="${DISPLAY}" \
+              XAUTHORITY="${XAUTHORITY}" \
+              _JAVA_AWT_WM_NONREPARENTING=1 \
+              "$SCRIPT_DIR/bin/Nautilus"
+          EOF
+          
+          chmod +x target/output/Nautilus/launch-nautilus.sh
+
       # ---------- Package output ----------
       - name: Archive
         shell: bash
