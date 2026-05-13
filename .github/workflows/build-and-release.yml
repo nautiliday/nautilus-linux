@@ -15,14 +15,10 @@ jobs:
       matrix:
         include:
           - os: ubuntu-latest
-            platform: linux
             arch: x86_64
-            jpackage_goal: linux
 
           - os: ubuntu-24.04-arm
-            platform: linux
             arch: arm64
-            jpackage_goal: linux
 
     runs-on: ${{ matrix.os }}
 
@@ -38,12 +34,28 @@ jobs:
           cache: maven
 
       - name: Build and package
-        run: mvn -Pdist package jpackage:jpackage@${{ matrix.jpackage_goal }}
+        run: mvn -Pdist package jpackage:jpackage@linux
+
+      - name: Add launcher script
+        shell: bash
+        run: |
+          cat > target/output/Nautilus/launch-nautilus.sh <<'EOF'
+          #!/bin/bash
+          
+          SCRIPT_DIR="$(cd -- "$(dirname -- "$0")" && pwd)"
+          
+          exec pkexec env \
+              DISPLAY="${DISPLAY}" \
+              XAUTHORITY="${XAUTHORITY}" \
+              _JAVA_AWT_WM_NONREPARENTING=1 \
+              "$SCRIPT_DIR/bin/Nautilus"
+          EOF
+          
+          chmod +x target/output/Nautilus/launch-nautilus.sh
 
       # ---------- Package output ----------
       - name: Archive
-        if: matrix.platform == 'linux'
-        shell: pwsh
+        shell: bash
         run: |
           cd target/output/Nautilus
           tar -czf ../../../nautilus-${{ github.ref_name }}-linux-${{ matrix.arch }}.tar.gz *
@@ -53,9 +65,9 @@ jobs:
       - name: Upload artifact
         uses: actions/upload-artifact@v7
         with:
-          name: nautilus-${{ matrix.platform }}-${{ matrix.arch }}
+          name: nautilus-linux-${{ matrix.arch }}
           path: |
-            nautilus-${{ github.ref_name }}-${{ matrix.platform }}-${{ matrix.arch }}.*
+            nautilus-${{ github.ref_name }}-linux-${{ matrix.arch }}.*
 
   release:
     needs: build
