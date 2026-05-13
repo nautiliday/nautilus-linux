@@ -10,7 +10,7 @@ import org.jspecify.annotations.NonNull;
 @UtilityClass
 public class Version {
 
-    public static final @NonNull String SEMVER = "0.1.0";
+    public static final @NonNull String SEMVER = "0.1.1";
     public static final @NonNull String SUFFIX = "";
     public static final @NonNull String BUILD_DATE = "";
     public static final @NonNull String DEVELOPER = "Egg-03";
